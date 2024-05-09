@@ -2,7 +2,7 @@
 ***Resnet and Batch Normalization has been without doubt two of the most important elements in Deep Learning. This diary is to record my own understanding on why they work.***
 
 ## __Let's first talk about BN.__
-### **Numerical stability**
+### **Improving Numerical stability**
 
 Suppose we have a 1-layer Linear Neural Network for regression problem, the output \(O\) and MSE loss \(\mathcal{L}_{MSE}\) is:
 $$O=\sigma(W \cdot X)$$ $$\mathcal{L}_{MSE}=\frac{1} {2}(O-Y)^2$$
@@ -19,7 +19,7 @@ In the original paper of Batch Normalizaion, they defined ICS.
 
 
 Mathematically, each layer can be derived as:  $$Y = \mathcal{F}\{X\}$$
-Where \(\mathcal{F}\) is the mapping function between input \(X\) and output \(Y\). Basically, they are learning this map between input pattern and output pattern. However, due to ICS, the input pattern could be constantly changing, thus ICS is believed to have detrimental effect on training process.
+Where \(\mathcal{F}\) is the mapping function between input \(X\) and output \(Y\). Basically, they are learning this map between input pattern and output pattern. However, due to ICS, the input pattern could be constantly changing, and such changes could break the learnt mapping function; therefore, ICS is believed to have detrimental effect on training process.
 
 However, other researchers had shown that ICS will not effect performance and BN does not reduce ICS. They prefer to explain the effectiveness of BN in another way.
 
