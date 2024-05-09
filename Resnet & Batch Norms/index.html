@@ -459,7 +459,7 @@ If the net has N layers, then the gradient of the first layer would be <script t
 <h3 id="perhaps-not-alleviate-internal-covariate-shift-1"><strong>(Perhaps not) Alleviate Internal Covariate Shift</strong> [1]</h3>
 <p>In the original paper of Batch Normalizaion, they defined ICS.</p>
 <blockquote>
-<p>ICS is the phenomenon wherein the distribution of inputs to a layer in the network changes due to an update of parameters of the previous layers.</p>
+<p>ICS is the phenomenon where the distribution of inputs to a layer in the network changes due to an update of parameters of the previous layers.</p>
 </blockquote>
 <p>Mathematically, each layer can be derived as:  <script type="math/tex; mode=display">Y = \mathcal{F}\{X\}</script>
 Where <script type="math/tex">\mathcal{F}</script> is the mapping function between input <script type="math/tex">X</script> and output <script type="math/tex">Y</script>. Basically, they are learning this map between input pattern and output pattern. However, due to ICS, the input pattern could be constantly changing, and such changes could break the learnt mapping function; therefore, ICS is believed to have detrimental effect on training process.</p>
