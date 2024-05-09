@@ -453,6 +453,7 @@
 <script type="math/tex; mode=display">O=\sigma(W \cdot X)</script>
 <script type="math/tex; mode=display">\mathcal{L}_{MSE}=\frac{1} {2}(O-Y)^2</script>
 Through back propagation, <script type="math/tex">\nabla \mathcal{L}_{W}=(O-Y)\cdot \frac{\partial O} {\partial (W)}=O\cdot X\cdot \sigma'</script>
+<br />
 If the net has N layers, then the gradient of the first layer would be <script type="math/tex">O \cdot \prod_{i=1}^{N} \frac{\partial O} {\partial (W)}</script>, and the product of this sequence would tend to 0 or <em>inf</em>. This is <strong>Numerical instability</strong>.</p>
 <p>With BN, we could restric X into any Gaussian distribution, thus fixing the instability of <script type="math/tex">X</script> and <script type="math/tex">\sigma'</script>.</p>
 <h3 id="perhaps-not-alleviate-internal-covariate-shift-1"><strong>(Perhaps not) Alleviate Internal Covariate Shift</strong> [1]</h3>
