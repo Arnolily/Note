@@ -461,7 +461,7 @@ If the net has N layers, then the gradient of the first layer would be <script t
 <p>ICS is the phenomenon wherein the distribution of inputs to a layer in the network changes due to an update of parameters of the previous layers.</p>
 </blockquote>
 <p>Mathematically, each layer can be derived as:  <script type="math/tex; mode=display">Y = \mathcal{F}\{X\}</script>
-Where <script type="math/tex">\mathcal{F}</script> is the mapping function between input <script type="math/tex">X</script> and output <script type="math/tex">Y</script>. Basically, they are learning this map between input pattern and output pattern. However, due to ICS, the input pattern could be constantly changing, thus ICS is believed to have detrimental effect on training process.</p>
+Where <script type="math/tex">\mathcal{F}</script> is the mapping function between input <script type="math/tex">X</script> and output <script type="math/tex">Y</script>. Basically, they are learning this map between input pattern and output pattern. However, due to ICS, the input pattern could be constantly changing, and such changes could break the learnt mapping function; therefore, ICS is believed to have detrimental effect on training process.</p>
 <p>However, other researchers had shown that ICS will not effect performance and BN does not reduce ICS. They prefer to explain the effectiveness of BN in another way.</p>
 <h3 id="smoother-loss-landscape-2"><strong>Smoother Loss landscape</strong> [2]</h3>
 <p>These researchers shown that BN contributes to the smoother Loss landscape, which could be visualized:
