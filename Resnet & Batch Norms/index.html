@@ -257,9 +257,60 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#so-lets-first-talk-about-bn" class="md-nav__link">
+  <a href="#lets-first-talk-about-bn" class="md-nav__link">
     <span class="md-ellipsis">
-      So let's first talk about BN.
+      Let's first talk about BN.
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Let's first talk about BN.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#numerical-stability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Numerical stability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#perhaps-not-alleviate-internal-covariate-shift-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      (Perhaps not) Alleviate Internal Covariate Shift [1]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smoother-loss-landscape-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Smoother Loss landscape [2]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#better-use-of-non-linearity-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Better use of non-linearity [3]
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#citation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Citation
     </span>
   </a>
   
@@ -320,9 +371,60 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#so-lets-first-talk-about-bn" class="md-nav__link">
+  <a href="#lets-first-talk-about-bn" class="md-nav__link">
     <span class="md-ellipsis">
-      So let's first talk about BN.
+      Let's first talk about BN.
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Let's first talk about BN.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#numerical-stability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Numerical stability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#perhaps-not-alleviate-internal-covariate-shift-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      (Perhaps not) Alleviate Internal Covariate Shift [1]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smoother-loss-landscape-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Smoother Loss landscape [2]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#better-use-of-non-linearity-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Better use of non-linearity [3]
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#citation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Citation
     </span>
   </a>
   
@@ -343,31 +445,40 @@
                   
 
 
-<h1 id="my-comprehension-of-resnet-and-batch-norms">My comprehension of Resnet and Batch Norms</h1>
+<h1 id="my-comprehension-of-resnet-and-batch-norms"><strong>My comprehension of Resnet and Batch Norms</strong></h1>
 <p><strong><em>Resnet and Batch Normalization has been without doubt two of the most important elements in Deep Learning. This diary is to record my own understanding on why they work.</em></strong></p>
-<h2 id="so-lets-first-talk-about-bn">So let's first talk about BN.</h2>
-<ul>
-<li>Why Normalize?</li>
-</ul>
-<p>As we all know, what models do is basicly approximating a complicated function. Mathematically:  <script type="math/tex; mode=display">Y = \mathcal{F}\{X\}</script>
-Where <script type="math/tex">\mathcal{F}</script> is the mapping function between input <script type="math/tex">X</script> and output <script type="math/tex">Y</script>. It would be easier to find such function if the input and output dataset follows the same distribution, and such mapping function would also be simpler, and simpler alleviate overfit problems.</p>
-<p>This is easy to understand: if your inputs follow distribution A and labels follow distribution B, then the mapping function would be uniquely A to B. This would cause generalization defect.</p>
-<ul>
-<li>Why not Standard Gaussian Distribution?</li>
-</ul>
-<p>Yes, there is a linear transformation (ie. scale and shift) after feature map <script type="math/tex">X</script> is normalized.</p>
-<p><img alt="" src="BN.png" style="height:300px;" /></p>
-<p>Let us explain this with an example.</p>
-<pre><code>net=nn.Sequential(
-    nn.Conv2d(),
-    nn.BatchNorm2d(),
-    nn.Sigmoid()
-)
-</code></pre>
-<p>In this net, we use a sigmoid activation function.</p>
+<h2 id="lets-first-talk-about-bn"><strong>Let's first talk about BN.</strong></h2>
+<h3 id="numerical-stability"><strong>Numerical stability</strong></h3>
+<p>Suppose we have a 1-layer Linear Neural Network for regression problem, the output <script type="math/tex">O</script> and MSE loss <script type="math/tex">\mathcal{L}_{MSE}</script> is:
+<script type="math/tex; mode=display">O=\sigma(W \cdot X)</script>
+<script type="math/tex; mode=display">\mathcal{L}_{MSE}=\frac{1} {2}(O-Y)^2</script>
+Through back propagation, <script type="math/tex">\nabla \mathcal{L}_{W}=(O-Y)\cdot \frac{\partial O} {\partial (W)}=O\cdot X\cdot \sigma'</script>
+If the net has N layers, then the gradient of the first layer would be <script type="math/tex">O \cdot \prod_{i=1}^{N} \frac{\partial O} {\partial (W)}</script>, and the product of this sequence would tend to 0 or <em>inf</em>. This is <strong>Numerical instability</strong>.</p>
+<p>With BN, we could restric X into any Gaussian distribution, thus fixing the instability of <script type="math/tex">X</script> and <script type="math/tex">\sigma'</script>.</p>
+<h3 id="perhaps-not-alleviate-internal-covariate-shift-1"><strong>(Perhaps not) Alleviate Internal Covariate Shift</strong> [1]</h3>
+<p>In the original paper of Batch Normalizaion, they defined ICS.</p>
+<blockquote>
+<p>ICS is the phenomenon wherein the distribution of inputs to a layer in the network changes due to an update of parameters of the previous layers.</p>
+</blockquote>
+<p>Mathematically, each layer can be derived as:  <script type="math/tex; mode=display">Y = \mathcal{F}\{X\}</script>
+Where <script type="math/tex">\mathcal{F}</script> is the mapping function between input <script type="math/tex">X</script> and output <script type="math/tex">Y</script>. Basically, they are learning this map between input pattern and output pattern. However, due to ICS, the input pattern could be constantly changing, thus ICS is believed to have detrimental effect on training process.</p>
+<p>However, other researchers had shown that ICS will not effect performance and BN does not reduce ICS. They prefer to explain the effectiveness of BN in another way.</p>
+<h3 id="smoother-loss-landscape-2"><strong>Smoother Loss landscape</strong> [2]</h3>
+<p>These researchers shown that BN contributes to the smoother Loss landscape, which could be visualized:
+<img alt="" src="../Landscape.png" /></p>
+<p>With BN, the Loss landscape is smoother, training efficiency will be improved, and that is why higher learning rate could be utilized. </p>
+<h3 id="better-use-of-non-linearity-3"><strong>Better use of non-linearity</strong> [3]</h3>
+<p>Please be noted, there is a linear transformation (ie. scale and shift) after feature map <script type="math/tex">x</script> is normalized.</p>
+<p><img alt="" src="../BN.png" style="height:300px;" /></p>
+<p>Let us suppose we use sigmoid function as activation function.</p>
 <p><img alt="" src="../sigmoid-function.png" style="height:300px;" /></p>
 <p>It is pretty clear that for <script type="math/tex">x\in (-1, 1)</script>, we have <script type="math/tex">\sigma(x)\approx x</script> . Which means the activation function is similar to an identity transformation. That is not a good sign, because the purpose of activation function is to add non-linearity in to the model. Therefore, without scale and shift, the non-linearity will be weak and the fitting process would be hard.</p>
-<p>ReLU, on the other hand, would not be heavily affected. So intuitionally speaking, it should be fine if we are using ReLU as activation function. But practically speaking, it seems better if we also let the model itself decide.</p>
+<p>Even for ReLU, which seems not going to be heavily effected, also witnessed the situation where all the neurons are either activated <script type="math/tex">x>0</script> or deactivated <script type="math/tex">x<0</script>. Be aware that if a ReLU neuron is always active, then it is linear; if it is always deactive, then it does not exist.</p>
+<p>But in my perspective, this might not be the most important contribution of BN. Experiments have proved that if we put BN after activation, network could even sometimes outperform!</p>
+<h2 id="citation">Citation</h2>
+<p>[1] Batch normalization: Accelerating deep network training by reducing internal covariate shift.
+[2] How Does Batch Normalization Help Optimization?<br />
+[3] The shattered gradients problem: If resnets are the answer, then what is the question?</p>
 
 
 
