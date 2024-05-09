@@ -453,12 +453,13 @@
 <script type="math/tex; mode=display">O=\sigma(W \cdot X)</script>
 <script type="math/tex; mode=display">\mathcal{L}_{MSE}=\frac{1} {2}(O-Y)^2</script>
 Through back propagation, <script type="math/tex">\nabla \mathcal{L}_{W}=(O-Y)\cdot \frac{\partial O} {\partial (W)}=O\cdot X\cdot \sigma'</script>
+<br />
 If the net has N layers, then the gradient of the first layer would be <script type="math/tex">O \cdot \prod_{i=1}^{N} \frac{\partial O} {\partial (W)}</script>, and the product of this sequence would tend to 0 or <em>inf</em>. This is <strong>Numerical instability</strong>.</p>
 <p>With BN, we could restric X into any Gaussian distribution, thus fixing the instability of <script type="math/tex">X</script> and <script type="math/tex">\sigma'</script>.</p>
 <h3 id="perhaps-not-alleviate-internal-covariate-shift-1"><strong>(Perhaps not) Alleviate Internal Covariate Shift</strong> [1]</h3>
 <p>In the original paper of Batch Normalizaion, they defined ICS.</p>
 <blockquote>
-<p>ICS is the phenomenon wherein the distribution of inputs to a layer in the network changes due to an update of parameters of the previous layers.</p>
+<p>ICS is the phenomenon where the distribution of inputs to a layer in the network changes due to an update of parameters of the previous layers.</p>
 </blockquote>
 <p>Mathematically, each layer can be derived as:  <script type="math/tex; mode=display">Y = \mathcal{F}\{X\}</script>
 Where <script type="math/tex">\mathcal{F}</script> is the mapping function between input <script type="math/tex">X</script> and output <script type="math/tex">Y</script>. Basically, they are learning this map between input pattern and output pattern. However, due to ICS, the input pattern could be constantly changing, and such changes could break the learnt mapping function; therefore, ICS is believed to have detrimental effect on training process.</p>

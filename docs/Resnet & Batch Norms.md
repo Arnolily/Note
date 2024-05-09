@@ -6,7 +6,7 @@
 
 Suppose we have a 1-layer Linear Neural Network for regression problem, the output \(O\) and MSE loss \(\mathcal{L}_{MSE}\) is:
 $$O=\sigma(W \cdot X)$$ $$\mathcal{L}_{MSE}=\frac{1} {2}(O-Y)^2$$
-Through back propagation, \(\nabla \mathcal{L}_{W}=(O-Y)\cdot \frac{\partial O} {\partial (W)}=O\cdot X\cdot \sigma'\)
+Through back propagation, \(\nabla \mathcal{L}_{W}=(O-Y)\cdot \frac{\partial O} {\partial (W)}=O\cdot X\cdot \sigma'\)  
 If the net has N layers, then the gradient of the first layer would be \(O \cdot \prod_{i=1}^{N} \frac{\partial O} {\partial (W)}\), and the product of this sequence would tend to 0 or _inf_. This is __Numerical instability__.
 
 With BN, we could restric X into any Gaussian distribution, thus fixing the instability of \(X\) and \(\sigma'\).
@@ -15,7 +15,7 @@ With BN, we could restric X into any Gaussian distribution, thus fixing the inst
 In the original paper of Batch Normalizaion, they defined ICS.
 
 
->ICS is the phenomenon wherein the distribution of inputs to a layer in the network changes due to an update of parameters of the previous layers.
+>ICS is the phenomenon where the distribution of inputs to a layer in the network changes due to an update of parameters of the previous layers.
 
 
 Mathematically, each layer can be derived as:  $$Y = \mathcal{F}\{X\}$$
