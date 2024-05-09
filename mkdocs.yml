@@ -1,4 +1,5 @@
 site_name: Arnolily
+site_url: https://arnolily.github.io
 theme:
   name: material
 
