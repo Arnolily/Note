@@ -1,15 +1,15 @@
 # __My comprehension of Skip-connection and Batch Norms__
-***Resnet and Batch Normalization has been without doubt two of the most important elements in Deep Learning. This diary is to record my own understanding on why they work.***
+***Skip-connections and rescaling (including normalization) appears in most of the networks. However, some paper would choose to use these tricks inappropriately, causing unnecessary network complexity. It is therefore important to take a look back at the basics, for both experimental inspiration and theoretical understanding.***
 
 ## __Possible advantages of BN.__
 ### **Improving Numerical stability**
 
-Suppose we have a 1-layer Linear Neural Network for regression problem, the output \(O\) and MSE loss \(\mathcal{L}_{MSE}\) is:
-$$O=\sigma(W \cdot X)$$ $$\mathcal{L}_{MSE}=\frac{1} {2}(O-Y)^2$$
-Through back propagation, \(\nabla \mathcal{L}_{W}=(O-Y)\cdot \frac{\partial O} {\partial (W)}=O\cdot X\cdot \sigma'\)  
-If the net has N layers, then the gradient of the first layer would be \(O \cdot \prod_{i=1}^{N} \frac{\partial O} {\partial (W)}\), and the product of this sequence would tend to 0 or _inf_. This is __Numerical instability__.
+Suppose we have a 1-layer Linear Neural Network for regression problem, the output \(o\) and MSE loss \(\mathcal{L}_{MSE}\) is:
+$$o=\sigma(w \cdot x)$$ $$\mathcal{L}_{MSE}=\frac{1} {2}(o-y)^2$$
+Through back propagation, \(\nabla \mathcal{L}_{w}=(o-y)\cdot \frac{\partial o} {\partial (w)}=o\cdot x\cdot \sigma'\)  
+If the net has N layers, then the gradient of the first layer would be \(o \cdot \prod_{i=1}^{N} \frac{\partial o} {\partial (w)}\), and the product of this sequence would tend to 0 or _inf_. This is __Numerical instability__.
 
-With BN, we could restric X into any Gaussian distribution, thus fixing the instability of \(X\) and \(\sigma'\).
+With BN, we could restric \(x\) into any Gaussian distribution, thus fixing the instability of \(x\) and \(\sigma'\).
 
 ### **(Perhaps not) Alleviate Internal Covariate Shift** [1]
 In the original paper of Batch Normalizaion, they defined ICS.
@@ -62,7 +62,18 @@ With this insight, he designed this skip-connection, which is basicly a manually
 
 Now the real problem is, what caused such network degradation? Is the degradation problem really because of the failure of achieving indentity mapping? That is where researchers would argue, and I would present some of the interesting researches here.
 
-****
+**Gradient correlation [2]**  
+Balduzzi et al. [2] proposed a new explaination for network degradation. They first claimed that ResNet actually allievated the shattered gradient problem. The shattered gradient problem has such definations:
+> Shattered gradients undermine the effectiveness of algorithms that assume gradients at nearby points are similar such as momentum-based and accelerated methods.
+
+Under this assumption, they quantilized the shattered gradient problem as the autocorrelation function (ACF). A higher ACF leads to higher performance and less shattered correlation problem. They proceeded to demonstrate, both through mathematical proofs and experiments, that skip connections have the capability to enhance ACF. However, their mathematical proof was under very strong assumption, and was not so persuasive to me.
+
+![ACF](ACF.png "title")
+
+
+
+
+
 
 
 ## Citation

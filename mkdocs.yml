@@ -5,6 +5,7 @@ theme:
 markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
+  - image-title
 
 extra_javascript:
   - javascripts/mathjax.js
@@ -18,3 +19,5 @@ extra_javascript:
 markdown_extensions:
   - mdx_math
   - attr_list
+
+  
