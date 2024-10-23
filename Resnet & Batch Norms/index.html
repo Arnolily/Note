@@ -515,7 +515,7 @@ Where <script type="math/tex">\mathcal{F}</script> is the mapping function betwe
 <p>With BN, the Loss landscape is smoother, training efficiency will be improved, and that is why higher learning rate could be utilized. </p>
 <h3 id="better-use-of-non-linearity-3"><strong>Better use of non-linearity</strong> [3]</h3>
 <p>Please be noted, there is a linear transformation (ie. scale and shift) after feature map <script type="math/tex">x</script> is normalized.</p>
-<p><img alt="" src="../BN.png" style="height:300px;" /></p>
+<p align="center"><img alt="" src="../BN.png" style="height:300px;" /></p>
 <p>Let us suppose we use sigmoid function as activation function.</p>
 <p><img alt="" src="../sigmoid-function.png" style="height:300px;" /></p>
 <p>It is pretty clear that for <script type="math/tex">x\in (-1, 1)</script>, we have <script type="math/tex">\sigma(x)\approx x</script> . Which means the activation function is similar to an identity transformation. That is not a good sign, because the purpose of activation function is to add non-linearity in to the model. Therefore, without scale and shift, the non-linearity will be weak and the fitting process would be hard.</p>
