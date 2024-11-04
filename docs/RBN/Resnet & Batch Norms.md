@@ -4,9 +4,10 @@
 ## __Possible advantages of BN.__
 ### **Improving Numerical stability**
 
-Suppose we have a 1-layer Linear Neural Network for regression problem, the output \(o\) and MSE loss \(\mathcal{L}_{MSE}\) is:
-$$o=\sigma(w \cdot x)$$ $$\mathcal{L}_{MSE}=\frac{1} {2}(o-y)^2$$
-Through back propagation, \(\nabla \mathcal{L}_{w}=(o-y)\cdot \frac{\partial o} {\partial (w)}=o\cdot x\cdot \sigma'\)  
+Suppose we have a 1-layer Linear Neural Network for regression problem, the output \(o\) and MSE loss $\mathcal{L}_{MSE} $ is:
+$$o=\sigma(w \cdot x)$$ 
+$$\mathcal{L}_{MSE}=\frac{1} {2}(o-y)^2$$
+Through back propagation, (\nabla \mathcal{L}_{w}=(o-y)\cdot \frac{\partial o} {\partial (w)}=o\cdot x\cdot \sigma'\)  
 If the net has N layers, then the gradient of the first layer would be \(o \cdot \prod_{i=1}^{N} \frac{\partial o} {\partial (w)}\), and the product of this sequence would tend to 0 or _inf_. This is __Numerical instability__.
 
 With BN, we could restric \(x\) into any Gaussian distribution, thus fixing the instability of \(x\) and \(\sigma'\).
