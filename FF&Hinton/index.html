@@ -9,8 +9,10 @@
       
       
       
-        <link rel="prev" href="../FF%26Hinton/">
+        <link rel="prev" href="..">
       
+      
+        <link rel="next" href="../Resnet%20%26%20Batch%20Norms/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -18,7 +20,7 @@
     
     
       
-        <title>My Understanding of Skip-Connections and Batch Normalization - Arnolily</title>
+        <title>The Forward-Forward Algorithm: A New Revolution Brought by Geoffrey Hinton - Arnolily</title>
       
     
     
@@ -60,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#my-understanding-of-skip-connections-and-batch-normalization" class="md-skip">
+        <a href="#the-forward-forward-algorithm-a-new-revolution-brought-by-geoffrey-hinton" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              My Understanding of Skip-Connections and Batch Normalization
+              The Forward-Forward Algorithm: A New Revolution Brought by Geoffrey Hinton
             
           </span>
         </div>
@@ -206,26 +208,6 @@
       
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../FF%26Hinton/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    The Forward-Forward Algorithm: A New Revolution Brought by Geoffrey Hinton
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
     
   
   
@@ -242,7 +224,7 @@
           
   
   <span class="md-ellipsis">
-    My Understanding of Skip-Connections and Batch Normalization
+    The Forward-Forward Algorithm: A New Revolution Brought by Geoffrey Hinton
   </span>
   
 
@@ -253,7 +235,7 @@
         
   
   <span class="md-ellipsis">
-    My Understanding of Skip-Connections and Batch Normalization
+    The Forward-Forward Algorithm: A New Revolution Brought by Geoffrey Hinton
   </span>
   
 
@@ -275,46 +257,19 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#possible-advantages-of-batch-normalization-bn" class="md-nav__link">
+  <a href="#prerequisite-problems-with-the-forward-backward-method" class="md-nav__link">
     <span class="md-ellipsis">
-      Possible Advantages of Batch Normalization (BN)
+      Prerequisite: Problems with the Forward-Backward Method
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Possible Advantages of Batch Normalization (BN)">
+    <nav class="md-nav" aria-label="Prerequisite: Problems with the Forward-Backward Method">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#improving-numerical-stability" class="md-nav__link">
+  <a href="#what-is-the-limitation" class="md-nav__link">
     <span class="md-ellipsis">
-      Improving Numerical Stability
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#perhaps-not-alleviating-internal-covariate-shift-1" class="md-nav__link">
-    <span class="md-ellipsis">
-      (Perhaps Not) Alleviating Internal Covariate Shift [1]
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#smoother-loss-landscape-2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Smoother Loss Landscape [2]
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#better-use-of-non-linearity-3" class="md-nav__link">
-    <span class="md-ellipsis">
-      Better Use of Non-linearity [3]
+      What is the limitation?
     </span>
   </a>
   
@@ -326,28 +281,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#possible-advantages-of-skip-connections" class="md-nav__link">
+  <a href="#a-brief-introduction-to-the-forward-forward-algorithm" class="md-nav__link">
     <span class="md-ellipsis">
-      Possible Advantages of Skip-Connections
+      A Brief Introduction to the Forward-Forward Algorithm
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Possible Advantages of Skip-Connections">
+    <nav class="md-nav" aria-label="A Brief Introduction to the Forward-Forward Algorithm">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#smoother-gradient-flow" class="md-nav__link">
+  <a href="#a-loss" class="md-nav__link">
     <span class="md-ellipsis">
-      Smoother Gradient Flow
+      A. Loss
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#solving-the-network-degradation-problem" class="md-nav__link">
+  <a href="#b-data" class="md-nav__link">
     <span class="md-ellipsis">
-      Solving the Network Degradation Problem
+      B. Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      C. Limitations
     </span>
   </a>
   
@@ -359,11 +323,44 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#citation" class="md-nav__link">
+  <a href="#some-latest-progress-on-ff-algorithm" class="md-nav__link">
     <span class="md-ellipsis">
-      Citation
+      Some latest progress on FF algorithm
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Some latest progress on FF algorithm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-training-convolutional-neural-networks-with-the-forward-forward-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      A. Training Convolutional Neural Networks with the Forward-Forward Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bconvolutional-channel-wise-competitive-learning-for-the-forward-forward-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      B.Convolutional Channel-wise Competitive Learning for the Forward-Forward Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#self-contrastive-forward-forward-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Self-Contrastive Forward-Forward Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -371,6 +368,26 @@
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Resnet%20%26%20Batch%20Norms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    My Understanding of Skip-Connections and Batch Normalization
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -402,46 +419,19 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#possible-advantages-of-batch-normalization-bn" class="md-nav__link">
+  <a href="#prerequisite-problems-with-the-forward-backward-method" class="md-nav__link">
     <span class="md-ellipsis">
-      Possible Advantages of Batch Normalization (BN)
+      Prerequisite: Problems with the Forward-Backward Method
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Possible Advantages of Batch Normalization (BN)">
+    <nav class="md-nav" aria-label="Prerequisite: Problems with the Forward-Backward Method">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#improving-numerical-stability" class="md-nav__link">
+  <a href="#what-is-the-limitation" class="md-nav__link">
     <span class="md-ellipsis">
-      Improving Numerical Stability
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#perhaps-not-alleviating-internal-covariate-shift-1" class="md-nav__link">
-    <span class="md-ellipsis">
-      (Perhaps Not) Alleviating Internal Covariate Shift [1]
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#smoother-loss-landscape-2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Smoother Loss Landscape [2]
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#better-use-of-non-linearity-3" class="md-nav__link">
-    <span class="md-ellipsis">
-      Better Use of Non-linearity [3]
+      What is the limitation?
     </span>
   </a>
   
@@ -453,28 +443,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#possible-advantages-of-skip-connections" class="md-nav__link">
+  <a href="#a-brief-introduction-to-the-forward-forward-algorithm" class="md-nav__link">
     <span class="md-ellipsis">
-      Possible Advantages of Skip-Connections
+      A Brief Introduction to the Forward-Forward Algorithm
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Possible Advantages of Skip-Connections">
+    <nav class="md-nav" aria-label="A Brief Introduction to the Forward-Forward Algorithm">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#smoother-gradient-flow" class="md-nav__link">
+  <a href="#a-loss" class="md-nav__link">
     <span class="md-ellipsis">
-      Smoother Gradient Flow
+      A. Loss
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#solving-the-network-degradation-problem" class="md-nav__link">
+  <a href="#b-data" class="md-nav__link">
     <span class="md-ellipsis">
-      Solving the Network Degradation Problem
+      B. Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      C. Limitations
     </span>
   </a>
   
@@ -486,11 +485,44 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#citation" class="md-nav__link">
+  <a href="#some-latest-progress-on-ff-algorithm" class="md-nav__link">
     <span class="md-ellipsis">
-      Citation
+      Some latest progress on FF algorithm
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Some latest progress on FF algorithm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-training-convolutional-neural-networks-with-the-forward-forward-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      A. Training Convolutional Neural Networks with the Forward-Forward Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bconvolutional-channel-wise-competitive-learning-for-the-forward-forward-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      B.Convolutional Channel-wise Competitive Learning for the Forward-Forward Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#self-contrastive-forward-forward-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Self-Contrastive Forward-Forward Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -509,73 +541,67 @@
                   
 
 
-<h1 id="my-understanding-of-skip-connections-and-batch-normalization"><strong>My Understanding of Skip-Connections and Batch Normalization</strong></h1>
-<p><em>Skip-connections and rescaling (including normalization) appear in most neural networks. However, some papers use these techniques inappropriately, causing unnecessary network complexity. It is therefore important to revisit the basics for both experimental inspiration and theoretical understanding.</em></p>
-<h2 id="possible-advantages-of-batch-normalization-bn"><strong>Possible Advantages of Batch Normalization (BN)</strong></h2>
-<h3 id="improving-numerical-stability"><strong>Improving Numerical Stability</strong></h3>
-<p>Suppose we have a 1-layer linear neural network for a regression problem. The output <script type="math/tex">o</script> and the Mean Squared Error (MSE) loss <script type="math/tex">\mathcal{L}_{MSE}</script> are:</p>
-<p>
-<script type="math/tex; mode=display">o = \sigma(w \cdot x)</script>
+<h1 id="the-forward-forward-algorithm-a-new-revolution-brought-by-geoffrey-hinton">The Forward-Forward Algorithm: A New Revolution Brought by Geoffrey Hinton</h1>
+<p><strong><em>At the age of 74, Geoffrey Hinton introduced a new algorithm to replace the backpropagation method—the very technique he popularized in 1986—in an effort to bring deep learning closer to a biologically plausible interpretation. This blog is to show respect for him and discuss my understanding of this work as well as recent developments on this amazing algorithm.</em></strong></p>
+<blockquote>
+<p>And lo, he declared, “Let there be a new way,” and thus the Forward-Forward algorithm was brought forth, that it might supplant the backpropagation he had once bestowed upon the minds of men in the year of 1986. And it was good. ------ <em>Hinton's Epiphany: A New Era in Deep Learning</em> (I made this up)</p>
+</blockquote>
+<p><img alt="Hinton" class="center" src="../images/hinton.jpeg" style="height:300px;" /></p>
+<h2 id="prerequisite-problems-with-the-forward-backward-method">Prerequisite: Problems with the Forward-Backward Method</h2>
+<p>Nowadays, most networks utilize Backpropagation <strong>(BP)</strong> to optimize the network. This is very effective, but its inherent flaws limit the upper bound of its capability. This inspired Hinton and the community to pursue a new method.</p>
+<h3 id="what-is-the-limitation">What is the limitation?</h3>
+<ol>
+<li>
+<p><strong>First</strong>, BP uses the chain rule to compute derivatives. This requires the forward computational graph to be precise, with no black-box process allowed.</p>
+</li>
+<li>
+<p><strong>Second</strong>, the ideal way to train a network should be continuous. For example, a robot should learn the rules of the world as it observes, with each frame and movement being directly processed by its brain. This stream of events should flow uninterrupted. It would seem unnatural if the robot had to stop observing every time it received a new frame to perform the BP process.</p>
+</li>
+<li>
+<p><strong>Lastly</strong>, and most importantly, BP is not a biologically plausible learning mechanism. In fact, it is highly unlikely that optimization signals are propagated backward through the brain. This suggests that the human brain does not learn using BP. From a practical standpoint, this aligns with common sense. Models like ChatGPT rely on Backpropagation Through Time (BPTT) to adjust their parameters, but this process is clearly unfeasible in the real world—how could a biological system, or any real-world process, literally travel backward through time?</p>
+</li>
+<li>
+<p>Of course, there are many other disadvantages to BP, but understanding that BP is not perfect is enough to move forward.</p>
+</li>
+</ol>
+<h2 id="a-brief-introduction-to-the-forward-forward-algorithm">A Brief Introduction to the Forward-Forward Algorithm</h2>
+<p>The training process of the Forward-Forward Algorithm can be broken down into two processes: positive learning and negative learning. These two processes are executed in an alternating fashion—first positive learning, then negative learning.</p>
+<h3 id="a-loss">A. Loss</h3>
+<p>During positive learning, we aim to lift up the output of each layer. The loss is:<br />
+<script type="math/tex; mode=display"> \mathcal{L}_{pos} = \log (1 + \theta - y^2) </script>
 <br />
-<script type="math/tex; mode=display">\mathcal{L}_{MSE} = \frac{1}{2}(o - y)^2</script>
+where <script type="math/tex">y</script> is the output of each layer, and <script type="math/tex">\theta</script> is a hyper-parameter.</p>
+<p>During negative learning, we aim to push down the output of each layer. The loss is:<br />
+<script type="math/tex; mode=display"> \mathcal{L}_{neg} = \log (1 - \theta + y^2) </script>
 </p>
-<p>Through backpropagation, the gradient <script type="math/tex">\nabla \mathcal{L}_{w}</script> is:</p>
-<p>
-<script type="math/tex; mode=display">\nabla \mathcal{L}_{w} = (o - y) \cdot \frac{\partial o}{\partial (w)} = o \cdot x \cdot \sigma'</script>
-</p>
-<p>If the network has <script type="math/tex">N</script> layers, then the gradient of the first layer would be <script type="math/tex">o \cdot \prod_{i=1}^{N} \frac{\partial o}{\partial (w)}</script>, and the product of this sequence would tend to 0 or infinity. This is <strong>numerical instability</strong>.</p>
-<p>With BN, we can restrict <script type="math/tex">x</script> to any Gaussian distribution, thus mitigating the instability of <script type="math/tex">x</script> and <script type="math/tex">\sigma'</script>.</p>
-<h3 id="perhaps-not-alleviating-internal-covariate-shift-1"><strong>(Perhaps Not) Alleviating Internal Covariate Shift</strong> [1]</h3>
-<p>In the original paper on Batch Normalization, they defined Internal Covariate Shift (ICS).</p>
-<blockquote>
-<p>ICS is the phenomenon where the distribution of inputs to a layer in the network changes due to an update of parameters in previous layers.</p>
-</blockquote>
-<p>Mathematically, each layer can be derived as:</p>
-<p>
-<script type="math/tex; mode=display">Y = \mathcal{F}\{X\}</script>
-</p>
-<p>where <script type="math/tex">\mathcal{F}</script> is the mapping function between input <script type="math/tex">X</script> and output <script type="math/tex">Y</script>. Essentially, layers are learning this map between input patterns and output patterns. However, due to ICS, the input pattern could constantly change, which might disrupt the learned mapping function. Therefore, ICS is believed to have a detrimental effect on the training process.</p>
-<p>However, I propose an alternative understanding of ICS. In traditional machine learning, we assume that data are <strong>IID</strong> (i.e., independently and identically distributed). This is the foundation of machine learning and the prerequisite of <strong>MLE</strong> (i.e., Maximum Likelihood Estimation), which is the original form of all loss functions. By using BN, we can ensure the second <strong>I</strong> in <strong>IID</strong>, which is identically distributed. This could lead to better generalization performance for the network.</p>
-<p><em>Other researchers, however, have shown that ICS does not affect performance and that BN does not reduce ICS.</em> They prefer to explain BN’s effectiveness differently.</p>
-<h3 id="smoother-loss-landscape-2"><strong>Smoother Loss Landscape</strong> [2]</h3>
-<p>These researchers demonstrated that BN contributes to a smoother loss landscape, which can be visualized:</p>
-<p><img alt="Loss Landscape" src="../Landscape.png" /></p>
-<p>With BN, the loss landscape is smoother, which improves training efficiency and allows for a higher learning rate.</p>
-<h3 id="better-use-of-non-linearity-3"><strong>Better Use of Non-linearity</strong> [3]</h3>
-<p>Note that there is a linear transformation (i.e., scaling and shifting) applied after the feature map <script type="math/tex">x</script> is normalized.</p>
-<p><img alt="Batch Normalization" src="../BN.png" style="height:300px;" /></p>
-<p>Suppose we use the sigmoid function as the activation function.</p>
-<p><img alt="Sigmoid Function" src="../sigmoid-function.png" style="height:300px;" /></p>
-<p>It’s clear that for <script type="math/tex">x \in (-1, 1)</script>, we have <script type="math/tex">\sigma(x) \approx x</script>. This means the activation function acts almost as an identity transformation, which is not ideal because the purpose of an activation function is to add non-linearity to the model. Therefore, without scaling and shifting, the non-linearity would be weak, making the fitting process difficult.</p>
-<p>Even for ReLU, which seems less affected, there are cases where all neurons are either activated <script type="math/tex">x > 0</script> or deactivated <script type="math/tex">x < 0</script>. If a ReLU neuron is always active, then it is linear; if it’s always inactive, it doesn’t contribute to the network.</p>
-<p>From my perspective, however, this might not be BN’s most important contribution. Experiments have shown that placing BN after the activation function can sometimes improve network performance!</p>
-<h2 id="possible-advantages-of-skip-connections"><strong>Possible Advantages of Skip-Connections</strong></h2>
-<h3 id="smoother-gradient-flow"><strong>Smoother Gradient Flow</strong></h3>
-<p>As pointed out in [4], authored by the ResNet creator He, one benefit of skip-connections is smoother gradient flow. For each skip layer, the output can be derived as:</p>
-<p>
-<script type="math/tex; mode=display">\mathbf{x}_{l+1} = \mathbf{x}_l + \mathcal{F}(\mathbf{x}_l, \mathcal{W}_l)</script>
-</p>
-<p>And the gradient is:</p>
-<p>
-<script type="math/tex; mode=display">\frac{\partial \mathcal{E}}{\partial \mathbf{x}_l} = \frac{\partial \mathcal{E}}{\partial \mathbf{x}_L} \frac{\partial \mathbf{x}_L}{\partial \mathbf{x}_l} = \frac{\partial \mathcal{E}}{\partial \mathbf{x}_L} \left(1 + \frac{\partial}{\partial \mathbf{x}_l} \sum_{i=l}^{L-1} \mathcal{F}(\mathbf{x}_i, \mathcal{W}_i)\right)</script>
-</p>
-<p>With ResNet, the gradient will be a sum of “geometric equations,” preventing it from vanishing.</p>
-<h3 id="solving-the-network-degradation-problem"><strong>Solving the Network Degradation Problem</strong></h3>
-<p>In the original ResNet paper, He claimed that ResNet solved the "network degradation problem." The idea was that if a deeper model performs worse than a shallower one on the test set, it implies that the additional layers in the deeper model are less effective than a straightforward identity mapping. If those extra layers simply acted as identity mappings, the deeper model would match the performance of the shallower model.</p>
-<p>With this insight, he designed skip-connections, which are essentially manually added identity mappings.</p>
-<p>The real question is, what causes network degradation? Is the degradation problem truly due to a failure to achieve identity mapping? This is an area where researchers differ, and I will present some interesting studies on the topic.</p>
-<p><strong>Gradient Correlation [2]</strong></p>
-<p>Balduzzi et al. [2] proposed a new explanation for network degradation. They first suggested that ResNet alleviates the shattered gradient problem. The shattered gradient problem is defined as follows:</p>
-<blockquote>
-<p>Shattered gradients undermine the effectiveness of algorithms that assume gradients at nearby points are similar, such as momentum-based and accelerated methods.</p>
-</blockquote>
-<p>Under this assumption, they quantified the shattered gradient problem as the autocorrelation function (ACF). A higher ACF leads to higher performance and a reduced shattered gradient problem. They demonstrated, through both mathematical proofs and experiments, that skip connections enhance ACF. However, their proof relied on very strong assumptions and was not entirely convincing to me.</p>
-<p><img alt="Autocorrelation Function (ACF)" src="../ACF.png" title="title" /></p>
-<h2 id="citation"><strong>Citation</strong></h2>
-<p>[1] Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift.<br />
-[2] How Does Batch Normalization Help Optimization?<br />
-[3] The Shattered Gradients Problem: If ResNets Are the Answer, Then What Is the Question?<br />
-[4] Identity Mappings in Deep Residual Networks.</p>
+<h3 id="b-data">B. Data</h3>
+<p>During positive learning, we input 'fact.' During negative learning, we input 'delusion.'</p>
+<p>By 'fact,' we mean the ground truth, while 'delusion' refers to something random or generated by some generative models.</p>
+<p>For example, in a simple MNIST dataset classification problem, 'fact' could be the image with the correct label mapping, while 'delusion' would be the image with a random label mapping.</p>
+<p><img alt="fact" class="center" src="../fact.png" style="height:300px;" />
+<img alt="delusion" class="center" src="../delusion.png" style="height:300px;" /></p>
+<p>Another example for unsupervised learning would be 'fact' as the original image and 'delusion' as a combination of two different images.</p>
+<p><img alt="" class="center" src="../delusion-unsupervised.png" style="height:300px;" /></p>
+<p>For RNNs and language models, during the positive training period, inputs will be real text data from the dataset. After the positive training period, the model will generate a piece of text data to serve as input for the negative training period.</p>
+<h3 id="c-limitations">C. Limitations</h3>
+<p>The original paper practiced this method on MLP only, and when I implemented the supervised method on a CNN, it failed, as expected. The label information, treated as marginal data, was lost during the convolution process. Since the only distinction between positive training and negative learning lies in the mapped label information, losing this information would result in a complete failure of the training process. Therefore, to dive deeper into the potential of the FF algorithm, we need to look for better ways to generate negative data.</p>
+<h2 id="some-latest-progress-on-ff-algorithm">Some latest progress on FF algorithm</h2>
+<h3 id="a-training-convolutional-neural-networks-with-the-forward-forward-algorithm">A. Training Convolutional Neural Networks with the Forward-Forward Algorithm</h3>
+<p>This paper proposed an intuitive method for generating negative samples. They defined different labels as 2-D strips matching the size of the image and mapped them onto the images. Unlike the original 1-D one-hot labels, these 2-D labels are not treated as marginal information, meaning they are retained during convolution. As a result, they can be captured by the CNN model, potentially leading to better performance than the vanilla Forward-Forward (FF) algorithm.</p>
+<p>However, the results from my experiments indicate that this method may not be as effective on more complex datasets such as CIFAR-10 and CIFAR-100. Please note that the paper does not provide code, and although not likely, my re-implementation on the CIFAR datasets may contain errors.</p>
+<h3 id="bconvolutional-channel-wise-competitive-learning-for-the-forward-forward-algorithm">B.Convolutional Channel-wise Competitive Learning for the Forward-Forward Algorithm</h3>
+<p>This paper re-implemented the FF algorithm, and it changed the way to use label information. Still remember that we want to lift up the output during positive training and push down during negative training? This time, they combined the positive training and negative training. When their model is trained, the output of each layer will be uniformly divide into [num_of_classes] parts, on the channel dimension. Then, the magnitude of the part that aligns with the label will be lifted up, and the other parts will be pushed down. It would be better elaborated in this pseudo code:</p>
+<pre><code>output = layer(input) # dimension = [C, H, W]
+channel_size = output.shape[0] # channel_size = C
+channel_part = torch.split(output, 
+channel_size // num_of_classes, dim = 1) # divide output along the channel dimension
+
+loss_pos = torch.exp(1 + theta - channel_part[label].pow(2).mean())
+
+loss_net = torch.exp(1 - theta + channel_part[others].pow(2).mean())
+</code></pre>
+<p>This is a very innovative training method to me, and intuitively speaking, it treated every method as a classifier. It could work well on cifar-10 dataset, with an accuracy of 79%.</p>
+<h3 id="self-contrastive-forward-forward-algorithm">Self-Contrastive Forward-Forward Algorithm</h3>
 
 
 
