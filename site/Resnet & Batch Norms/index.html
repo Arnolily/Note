@@ -18,7 +18,7 @@
     
     
       
-        <title>Resnet & Batch Norms - Arnolily</title>
+        <title>My comprehension of Resnet and Batch Norms - Arnolily</title>
       
     
     
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Resnet & Batch Norms
+              My comprehension of Resnet and Batch Norms
             
           </span>
         </div>
@@ -258,15 +258,147 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    My comprehension of Resnet and Batch Norms
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
-    Resnet & Batch Norms
+    My comprehension of Resnet and Batch Norms
   </span>
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#my-understanding-of-skip-connections-and-batch-normalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      My Understanding of Skip-Connections and Batch Normalization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#possible-advantages-of-batch-normalization-bn" class="md-nav__link">
+    <span class="md-ellipsis">
+      Possible Advantages of Batch Normalization (BN)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Possible Advantages of Batch Normalization (BN)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#improving-numerical-stability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Improving Numerical Stability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#perhaps-not-alleviating-internal-covariate-shift-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      (Perhaps Not) Alleviating Internal Covariate Shift [1]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smoother-loss-landscape-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Smoother Loss Landscape [2]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#better-use-of-non-linearity-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Better Use of Non-linearity [3]
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#possible-advantages-of-skip-connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Possible Advantages of Skip-Connections
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Possible Advantages of Skip-Connections">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#smoother-gradient-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Smoother Gradient Flow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solving-the-network-degradation-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solving the Network Degradation Problem
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#citation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Citation
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -292,6 +424,116 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#my-understanding-of-skip-connections-and-batch-normalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      My Understanding of Skip-Connections and Batch Normalization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#possible-advantages-of-batch-normalization-bn" class="md-nav__link">
+    <span class="md-ellipsis">
+      Possible Advantages of Batch Normalization (BN)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Possible Advantages of Batch Normalization (BN)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#improving-numerical-stability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Improving Numerical Stability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#perhaps-not-alleviating-internal-covariate-shift-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      (Perhaps Not) Alleviating Internal Covariate Shift [1]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smoother-loss-landscape-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Smoother Loss Landscape [2]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#better-use-of-non-linearity-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Better Use of Non-linearity [3]
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#possible-advantages-of-skip-connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Possible Advantages of Skip-Connections
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Possible Advantages of Skip-Connections">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#smoother-gradient-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Smoother Gradient Flow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solving-the-network-degradation-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solving the Network Degradation Problem
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#citation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Citation
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -305,10 +547,11 @@
                   
 
 
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
-<h1 id="my-comprehension-of-resnet-and-batch-norms"><strong>My comprehension of Resnet and Batch Norms</strong></h1>
-<h1 id="skip-connections-and-rescaling-including-normalization-appear-in-most-neural-networks-however-some-papers-use-these-techniques-inappropriately-causing-unnecessary-network-complexity-it-is-therefore-important-to-revisit-the-basics-for-both-experimental-inspiration-and-theoretical-understanding"><strong><em>Skip-connections and rescaling (including normalization) appear in most neural networks. However, some papers use these techniques inappropriately, causing unnecessary network complexity. It is therefore important to revisit the basics for both experimental inspiration and theoretical understanding.</em></strong></h1>
-<h1 id="my-understanding-of-skip-connections-and-batch-normalization"><strong>My Understanding of Skip-Connections and Batch Normalization</strong></h1>
+<h1 id="my-comprehension-of-resnet-and-batch-norms">My comprehension of Resnet and Batch Norms</h1>
+<blockquote>
+<p>Skip-connections and rescaling (including normalization) appear in most neural networks. However, some papers use these techniques inappropriately, causing unnecessary network complexity. It is therefore important to revisit the basics for both experimental inspiration and theoretical understanding.</p>
+</blockquote>
+<h2 id="my-understanding-of-skip-connections-and-batch-normalization"><strong>My Understanding of Skip-Connections and Batch Normalization</strong></h2>
 <p><em>Skip-connections and rescaling (including normalization) appear in most neural networks. However, some papers use these techniques inappropriately, causing unnecessary network complexity. It is therefore important to revisit the basics for both experimental inspiration and theoretical understanding.</em></p>
 <blockquote>
 <blockquote>
