@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 # **My comprehension of Resnet and Batch Norms**
 
 ***Skip-connections and rescaling (including normalization) appear in most neural networks. However, some papers use these techniques inappropriately, causing unnecessary network complexity. It is therefore important to revisit the basics for both experimental inspiration and theoretical understanding.***
+=======
+# **My Understanding of Skip-Connections and Batch Normalization**
+
+*Skip-connections and rescaling (including normalization) appear in most neural networks. However, some papers use these techniques inappropriately, causing unnecessary network complexity. It is therefore important to revisit the basics for both experimental inspiration and theoretical understanding.*
+>>>>>>> 1ae913e099db580890c8e6fa923121c61b1edfb7
 
 ## **Possible Advantages of Batch Normalization (BN)**
 
