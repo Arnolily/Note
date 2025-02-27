@@ -1,71 +1,71 @@
-# Feature learning from Continual Learning
+# Feature Learning from Continual Learning
 
-> This blog is to document some of the insights of features learning from the view of continual learning. 
+> This blog documents some of the insights on feature learning from the perspective of continual learning.
 
-**I have always been curious about one thing, what makes neural networks so powerful? One of the subquestions is: what is neural networks learning?**
+**I have always been curious about one thing: what makes neural networks so powerful? One of the sub-questions is: what do neural networks actually learn?**
 
-A very famous example I would like to use is self-attention:![image-20250220200020938](heatmap.png)
+A very famous example I would like to use is self-attention: ![image-20250220200020938](heatmap.png)
 
-When generating words, the model is concentrating on different parts of the picture, like what we would do.
+When generating words, the model concentrates on different parts of the picture, similar to how we would.
 
 But are all models learned in this way?
 
-First, we need to remember what the models is doing, it is **Extracting features**, dropping the unneeded information (such as noises), and focus on the valuable content. Then, such valuable content is feed to the last fc layer, which act as a classifier------the layer that learn only the map between features and labels.
+First, we need to remember what the models are doing. They are **extracting features**, discarding unneeded information (such as noise), and focusing on the valuable content. This valuable content is then fed into the final fully connected (fc) layer, which acts as a classifier—the layer that learns the mapping between features and labels.
 
+## An Interesting Phenomenon
 
+I was enrolled in an AI-related course at my school, and one of the projects was to do image classification on a dataset we collected ourselves. The dataset was extremely poor, and the data distribution was highly unideal. For example, a tin can could have a label of 'metal', 'waste', or even 'hazardous waste' if it contains outdated medicine. Let’s call it the UESTC dataset.
 
-## An interesting phenomena
+It seemed almost impossible for models to achieve good accuracy on such a dataset. Initially, I blamed the UESTC dataset and set it aside. Days later, a friend of mine told me he achieved a high accuracy of 80% using a pretrained model on ImageNet. This immediately drew my attention. By using a simple transfer-learning technique, the model could learn to classify the UESTC dataset with high accuracy. Surely, the pretraining experience on ImageNet helped the model learn to extract more general information, instead of focusing on minor details that were highly correlated with a specific dataset.
 
-I was enrolled in an AI related course in my school, and one of the project is to do image classification on a dataset collected by ourselves. The dataset is extremely poor, and the data distribution is highly unideal. For example, a tin can can have a label of 'metal', 'waste', or even 'hazardous waste' if it contains outdated medicine.  Let us call it UESTC dataset.
+Now, I would describe this phenomenon as feature learning. In fact, I believe one of the most important aspects of transfer learning is feature learning. The teacher model is pretrained on a high-quality dataset, where it learns to extract features. These pretrained parameters can then be transferred to a downstream task as initialization. This starting point of gradient descent significantly influences the entire process and most likely leads to better performance.
 
-Models seems to be impossible to achieve a good accuracy on such dataset. First, I blame the UESTC dataset for this, and set it aside. Days after, a friend of mine told me that he can achieve a high accuracy of 80% with a pretrained model on image-net. This suddenly draws my attention. By using a simple transfer-learning technique, the model can learn to classify UESTC dataset with high accuracy. Surely, the pretrain experience on ImageNet helped the model to learn how to extract more general information, instead of focusing on minor details that high correlated to a certain dataset.
-
-So naturally, I thought about train the model on the UESTC dataset to better improve its generalization, and then it might perform better on ImageNet. Therefore, I tried, but failed. The model trained on the
-
-Now, I would like to describe this phenomena as feature learning. In fact, I think one of the most important point of transfer learning is feature learning. The teacher model is pretrained on a dataset with high quality, where it learned to extract features, and then it can be transferred to a downstream task with the pretrained parameters as an initialization. This starting point of gradient descent will highly influence the whole process, and most likely it will perform better.
+So naturally, I thought about training the model on the UESTC dataset to improve its generalization, hoping it might then perform better on ImageNet. However, I tried and failed. The model trained on the UESTC dataset forgot about ImageNet, resulting in overfitting on the UESTC data.
 
 ## Continual Learning
 
-However, this method is only for higher accuracy on a specific dataset. Once we started train the model in the downstream task, parameter space will start to shift, and it will lose its generalization. Like this graph:
+As we can see, this method only improves accuracy on a specific dataset. Once we start training the model on the downstream task, the parameter space begins to shift, and it loses its generalization ability. Like this graph:
 
 ![parameterspace](parameterspace.png)
 
-What if we want this model to learn and **remember**? Is it possible if we let the parameter to stay at the sweet spot, where it can balance the trade-off between performance and over-fit? It is possible, and this problem is called continual learning problem.
+What if we want this model to learn and **remember**? Is it possible to keep the parameters in the "sweet spot," where the model can balance the trade-off between performance and overfitting? It is possible, and this problem is known as the continual learning problem.
 
-Continual learning techniques can alleviate the phenomena of catastrophic forgetting, which means that the model forget about previous tasks when training with latter tasks. 
+Continual learning techniques can help alleviate the phenomenon of catastrophic forgetting, which refers to the model forgetting previous tasks when training on later tasks.
 
-Another very similar but different concept is called Lifelong learning. This aims to achieve a learning process like human. Learning forever and keep remembering the most important part.
+Another concept, though related, is called Lifelong Learning. This aims to achieve a learning process similar to that of humans—learning forever while continuously remembering the most important information.
 
-Below, I will briefly introduce some popular continual learning technique.
+Below, I will briefly introduce some popular continual learning techniques.
 
-1. Adding Constrains: such as EWC OWM GPM
+1. **Adding Constraints**: such as EWC, OWM, GPM
 
-   These types of techniques add constrains to the loss function. Constrains could be related to the mean, gradient or variance of parameters. This aims to create a gradient map where the minima is in the sweet spot.
+   These techniques add constraints to the loss function. The constraints can be related to the mean, gradient, or variance of parameters. The goal is to create a gradient map where the minima lie in the sweet spot.
 
-2. Dividing models: such as HAT
+2. **Dividing Models**: such as HAT
 
-   A tricky but unsustainable technique. It divide a model to different parts, and each part is responsible for a certain task. However, this does not suit the goal of lifelong learning, as the model will very soon run out of free space. I also want to emphasize that, short-term continual learning is easy but unimpressive. *📌I will explain why in below*.
+   This is a tricky but unsustainable technique. It divides a model into different parts, with each part responsible for a specific task. However, this does not suit the goal of lifelong learning, as the model will quickly run out of free space. I also want to emphasize that short-term continual learning is easy but unimpressive. *📌 I will explain why below*.
 
-3. Memory pool: such as A-GEM
+3. **Memory Pool**: such as A-GEM
 
-   Such method requires an extra memory pool, used to store previous gradients or data. Under some occasions the model will revisit memory pool and try to "review" about previous knowledge.
+   This method requires an additional memory pool to store previous gradients or data. Occasionally, the model revisits the memory pool and attempts to "review" previous knowledge.
 
-## Some imperfections within these techniques
+## Some Imperfections Within These Techniques
 
-What continual learning attracts me is its motivation, i.e. learning like to understand. To prevent catastrophic forgetting, the ideal way is to learn the general rule of data, without over-concentrated on minor details. Therefore, I believe feature learning is the road to continual learning.
+What attracts me to continual learning is its motivation—i.e., learning to understand. To prevent catastrophic forgetting, the ideal approach is to learn the general rules of data, without over-concentrating on minor details. Therefore, I believe feature learning is one of the paths to continual learning.
 
-However, these techniques I have presented above does not care about data distillation at all. Nothing about feature extraction, nothing about generalization, but focus on reducing conflict in each training process. It is like a two-edged sword. Perhaps in some scenarios it is better, but at least for their baselines, which is carried out on split-cifar100 or p-mnist, they are a bit less effective. Why would I say so? Because original Backpropagation could do just fine.
+However, the techniques I’ve presented above do not consider data distillation at all. There is nothing about feature extraction or generalization. They focus primarily on reducing conflict during each training process. It’s like a double-edged sword. Perhaps in some scenarios, these techniques may work better, but at least for their baselines (which are typically tested on split-CIFAR100 or P-MNIST), they are somewhat less effective. Why do I say this? Because traditional backpropagation (BP) can already do just fine.
 
 ![Cifar100](Cifar100.png)
 
-**BP* means to load model with highest validation accuracy for each task.**
+**BP* means to load the model with the highest validation accuracy for each task.**
 
-**BP\** mean to freeze the feature extractor (i.e. the parameters before classifier).**
+**BP\** means to freeze the feature extractor (i.e., the parameters before the classifier).**
 
-Does this result shock you? Well, the result is tested on 5 seeds, and they should be enough to mean something. Although BP is highly unstable on continual learning, and in some seeds it could forgetting everything(of course I did not use those seeds for baseline), but some of its transformations achieves impressive accuracy.
+Does this result surprise you? Well, the result is tested across 5 seeds, and they should be enough to draw meaningful conclusions. Although BP is highly unstable in continual learning (and in some seeds, it could forget everything—of course, I didn’t use those seeds for the baseline), some of its transformations achieve impressive accuracy.
 
-Why? How can BP\*\* achieve such a high score? The answer is easy, because fundamentally speaking, BP** is not continual learning. For each task, we are training a single fc layer only, as the previous parameters are frozen. 
+Why? How can BP\*\* achieve such a high score? The answer is simple: because fundamentally, BP\*\* is not continual learning. For each task, we are only training a single fully connected (fc) layer, as the previous parameters are frozen.
 
-📌: That is why I say there is little significant to achieve short-term continual learning, because BP can already do it very well, even better than some techniques such as HAT.
+📌: This is why I say there is little significance in achieving short-term continual learning, because BP can already do it very well—sometimes even better than techniques such as HAT.
 
-(blog not finished, will update soon)
+Of course, this is true for task increments only. In the class increment scenario, BP is completely broken, as the bottleneck becomes the classifier. But the core idea of feature learning remains the same.
+
+*(Blog not finished; will update soon.)*
