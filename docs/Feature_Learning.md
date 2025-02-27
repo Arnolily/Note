@@ -38,15 +38,15 @@ Below, I will briefly introduce some popular continual learning techniques.
 
 1. **Adding Constraints**: such as EWC, OWM, GPM
 
-   These techniques add constraints to the loss function. The constraints can be related to the mean, gradient, or variance of parameters. The goal is to create a gradient map where the minima lie in the sweet spot.
+   	These techniques add constraints to the loss function. The constraints can be related to the mean, gradient, or variance of parameters. The goal is to create a gradient map where the minima lie in the sweet spot.
 
 2. **Dividing Models**: such as HAT
 
-   This is a tricky but unsustainable technique. It divides a model into different parts, with each part responsible for a specific task. However, this does not suit the goal of lifelong learning, as the model will quickly run out of free space. I also want to emphasize that short-term continual learning is easy but unimpressive. *📌 I will explain why below*.
+   	This is a tricky but unsustainable technique. It divides a model into different parts, with each part responsible for a specific task. However, this does not suit the goal of lifelong learning, as the model will quickly run out of free space. I also want to emphasize that short-term continual learning is easy but unimpressive. *📌 I will explain why below*.
 
 3. **Memory Pool**: such as A-GEM
 
-   This method requires an additional memory pool to store previous gradients or data. Occasionally, the model revisits the memory pool and attempts to "review" previous knowledge.
+   	This method requires an additional memory pool to store previous gradients or data. Occasionally, the model revisits the memory pool and attempts to "review" previous knowledge.
 
 ## Some Imperfections Within These Techniques
 
@@ -66,6 +66,6 @@ Why? How can BP\*\* achieve such a high score? The answer is simple: because fun
 
 📌: This is why I say there is little significance in achieving short-term continual learning, because BP can already do it very well—sometimes even better than techniques such as HAT.
 
-Of course, this is true for task increments only. In the class increment scenario, BP is completely broken, as the bottleneck becomes the classifier. But the core idea of feature learning remains the same.
+This holds true only for task increments. In the case of class increments, BP fails entirely, as the classifier becomes the bottleneck. However, the fundamental concept of feature learning stays unchanged.
 
 *(Blog not finished; will update soon.)*
