@@ -1,4 +1,4 @@
-## Feature learning from Continual Learning
+# Feature learning from Continual Learning
 
 > This blog is to document some of the insights of features learning from the view of continual learning. 
 
@@ -14,7 +14,7 @@ First, we need to remember what the models is doing, it is **Extracting features
 
 
 
-### An interesting phenomena
+## An interesting phenomena
 
 I was enrolled in an AI related course in my school, and one of the project is to do image classification on a dataset collected by ourselves. The dataset is extremely poor, and the data distribution is highly unideal. For example, a tin can can have a label of 'metal', 'waste', or even 'hazardous waste' if it contains outdated medicine.  Let us call it UESTC dataset.
 
@@ -24,7 +24,7 @@ So naturally, I thought about train the model on the UESTC dataset to better imp
 
 Now, I would like to describe this phenomena as feature learning. In fact, I think one of the most important point of transfer learning is feature learning. The teacher model is pretrained on a dataset with high quality, where it learned to extract features, and then it can be transferred to a downstream task with the pretrained parameters as an initialization. This starting point of gradient descent will highly influence the whole process, and most likely it will perform better.
 
-### Continual Learning
+## Continual Learning
 
 However, this method is only for higher accuracy on a specific dataset. Once we started train the model in the downstream task, parameter space will start to shift, and it will lose its generalization. Like this graph:
 
@@ -50,7 +50,7 @@ Below, I will briefly introduce some popular continual learning technique.
 
    Such method requires an extra memory pool, used to store previous gradients or data. Under some occasions the model will revisit memory pool and try to "review" about previous knowledge.
 
-### Some imperfections within these techniques
+## Some imperfections within these techniques
 
 What continual learning attracts me is its motivation, i.e. learning like to understand. To prevent catastrophic forgetting, the ideal way is to learn the general rule of data, without over-concentrated on minor details. Therefore, I believe feature learning is the road to continual learning.
 
@@ -64,7 +64,7 @@ However, these techniques I have presented above does not care about data distil
 
 Does this result shock you? Well, the result is tested on 5 seeds, and they should be enough to mean something. Although BP is highly unstable on continual learning, and in some seeds it could forgetting everything(of course I did not use those seeds for baseline), but some of its transformations achieves impressive accuracy.
 
-Why? How can BP** achieve such a high score? The answer is easy, because fundamentally speaking, BP**is not continual learning. For each task, we are training a single fc layer only, as the previous parameters are frozen. 
+Why? How can BP\*\* achieve such a high score? The answer is easy, because fundamentally speaking, BP** is not continual learning. For each task, we are training a single fc layer only, as the previous parameters are frozen. 
 
 📌: That is why I say there is little significant to achieve short-term continual learning, because BP can already do it very well, even better than some techniques such as HAT.
 
