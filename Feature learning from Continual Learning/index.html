@@ -1,0 +1,526 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../FF%26Hinton/">
+      
+      
+        <link rel="next" href="../Resnet%20%26%20Batch%20Norms/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.21">
+    
+    
+      
+        <title>Feature learning from Continual Learning - Arnolily</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.66ac8b77.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#feature-learning-from-continual-learning" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Arnolily" class="md-header__button md-logo" aria-label="Arnolily" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Arnolily
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Feature learning from Continual Learning
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Arnolily" class="md-nav__button md-logo" aria-label="Arnolily" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Arnolily
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    My Daily Life and Thoughts on Science
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FF%26Hinton/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Forward-Forward Algorithm: A New Revolution Brought by Geoffrey Hinton
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Feature learning from Continual Learning
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Feature learning from Continual Learning
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#feature-learning-from-continual-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature learning from Continual Learning
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Feature learning from Continual Learning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#an-interesting-phenomena" class="md-nav__link">
+    <span class="md-ellipsis">
+      An interesting phenomena
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#continual-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Continual Learning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#some-imperfections-within-these-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Some imperfections within these techniques
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Resnet%20%26%20Batch%20Norms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Resnet & Batch Norms
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#feature-learning-from-continual-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature learning from Continual Learning
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Feature learning from Continual Learning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#an-interesting-phenomena" class="md-nav__link">
+    <span class="md-ellipsis">
+      An interesting phenomena
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#continual-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Continual Learning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#some-imperfections-within-these-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Some imperfections within these techniques
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>Feature learning from Continual Learning</h1>
+
+<h2 id="feature-learning-from-continual-learning">Feature learning from Continual Learning</h2>
+<blockquote>
+<p>This blog is to document some of the insights of features learning from the view of continual learning. </p>
+</blockquote>
+<p><strong>I have always been curious about one thing, what makes neural networks so powerful? One of the subquestions is: what is neural networks learning?</strong></p>
+<p>A very famous example I would like to use is self-attention:<img alt="image-20250220200020938" src="../heatmap.png" /></p>
+<p>When generating words, the model is concentrating on different parts of the picture, like what we would do.</p>
+<p>But are all models learned in this way?</p>
+<p>First, we need to remember what the models is doing, it is <strong>Extracting features</strong>, dropping the unneeded information (such as noises), and focus on the valuable content. Then, such valuable content is feed to the last fc layer, which act as a classifier------the layer that learn only the map between features and labels.</p>
+<h3 id="an-interesting-phenomena">An interesting phenomena</h3>
+<p>I was enrolled in an AI related course in my school, and one of the project is to do image classification on a dataset collected by ourselves. The dataset is extremely poor, and the data distribution is highly unideal. For example, a tin can can have a label of 'metal', 'waste', or even 'hazardous waste' if it contains outdated medicine.  Let us call it UESTC dataset.</p>
+<p>Models seems to be impossible to achieve a good accuracy on such dataset. First, I blame the UESTC dataset for this, and set it aside. Days after, a friend of mine told me that he can achieve a high accuracy of 80% with a pretrained model on image-net. This suddenly draws my attention. By using a simple transfer-learning technique, the model can learn to classify UESTC dataset with high accuracy. Surely, the pretrain experience on ImageNet helped the model to learn how to extract more general information, instead of focusing on minor details that high correlated to a certain dataset.</p>
+<p>So naturally, I thought about train the model on the UESTC dataset to better improve its generalization, and then it might perform better on ImageNet. Therefore, I tried, but failed. The model trained on the</p>
+<p>Now, I would like to describe this phenomena as feature learning. In fact, I think one of the most important point of transfer learning is feature learning. The teacher model is pretrained on a dataset with high quality, where it learned to extract features, and then it can be transferred to a downstream task with the pretrained parameters as an initialization. This starting point of gradient descent will highly influence the whole process, and most likely it will perform better.</p>
+<h3 id="continual-learning">Continual Learning</h3>
+<p>However, this method is only for higher accuracy on a specific dataset. Once we started train the model in the downstream task, parameter space will start to shift, and it will lose its generalization. Like this graph:</p>
+<p><img alt="parameterspace" src="../parameterspace.png" /></p>
+<p>What if we want this model to learn and <strong>remember</strong>? Is it possible if we let the parameter to stay at the sweet spot, where it can balance the trade-off between performance and over-fit? It is possible, and this problem is called continual learning problem.</p>
+<p>Continual learning techniques can alleviate the phenomena of catastrophic forgetting, which means that the model forget about previous tasks when training with latter tasks. </p>
+<p>Another very similar but different concept is called Lifelong learning. This aims to achieve a learning process like human. Learning forever and keep remembering the most important part.</p>
+<p>Below, I will briefly introduce some popular continual learning technique.</p>
+<ol>
+<li>Adding Constrains: such as EWC OWM GPM</li>
+</ol>
+<p>These types of techniques add constrains to the loss function. Constrains could be related to the mean, gradient or variance of parameters. This aims to create a gradient map where the minima is in the sweet spot.</p>
+<ol>
+<li>Dividing models: such as HAT</li>
+</ol>
+<p>A tricky but unsustainable technique. It divide a model to different parts, and each part is responsible for a certain task. However, this does not suit the goal of lifelong learning, as the model will very soon run out of free space. I also want to emphasize that, short-term continual learning is easy but unimpressive. <em>📌I will explain why in below</em>.</p>
+<ol>
+<li>Memory pool: such as A-GEM</li>
+</ol>
+<p>Such method requires an extra memory pool, used to store previous gradients or data. Under some occasions the model will revisit memory pool and try to "review" about previous knowledge.</p>
+<h3 id="some-imperfections-within-these-techniques">Some imperfections within these techniques</h3>
+<p>What continual learning attracts me is its motivation, i.e. learning like to understand. To prevent catastrophic forgetting, the ideal way is to learn the general rule of data, without over-concentrated on minor details. Therefore, I believe feature learning is the road to continual learning.</p>
+<p>However, these techniques I have presented above does not care about data distillation at all. Nothing about feature extraction, nothing about generalization, but focus on reducing conflict in each training process. It is like a two-edged sword. Perhaps in some scenarios it is better, but at least for their baselines, which is carried out on split-cifar100 or p-mnist, they are a bit less effective. Why would I say so? Because original Backpropagation could do just fine.</p>
+<p><img alt="Cifar100" src="../Cifar100.png" /></p>
+<p><strong>BP* means to load model with highest validation accuracy for each task.</strong></p>
+<p><strong>BP** mean to freeze the feature extractor (i.e. the parameters before classifier).</strong></p>
+<p>Does this result shock you? Well, the result is tested on 5 seeds, and they should be enough to mean something. Although BP is highly unstable on continual learning, and in some seeds it could forgetting everything(of course I did not use those seeds for baseline), but some of its transformations achieves impressive accuracy.</p>
+<p>Why? How can BP<strong> achieve such a high score? The answer is easy, because fundamentally speaking, BP</strong>is not continual learning. For each task, we are training a single fc layer only, as the previous parameters are frozen. </p>
+<p>📌: That is why I say there is little significant to achieve short-term continual learning, because BP can already do it very well, even better than some techniques such as HAT.</p>
+<p>(blog not finished, will update soon)</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a7c05c9e.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      
+    
+  </body>
+</html>
