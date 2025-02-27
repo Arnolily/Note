@@ -421,17 +421,19 @@
 <p>Another concept, though related, is called Lifelong Learning. This aims to achieve a learning process similar to that of humans—learning forever while continuously remembering the most important information.</p>
 <p>Below, I will briefly introduce some popular continual learning techniques.</p>
 <ol>
-<li><strong>Adding Constraints</strong>: such as EWC, OWM, GPM</li>
-</ol>
+<li>
+<p><strong>Adding Constraints</strong>: such as EWC, OWM, GPM</p>
 <p>These techniques add constraints to the loss function. The constraints can be related to the mean, gradient, or variance of parameters. The goal is to create a gradient map where the minima lie in the sweet spot.</p>
-<ol>
-<li><strong>Dividing Models</strong>: such as HAT</li>
-</ol>
+</li>
+<li>
+<p><strong>Dividing Models</strong>: such as HAT</p>
 <p>This is a tricky but unsustainable technique. It divides a model into different parts, with each part responsible for a specific task. However, this does not suit the goal of lifelong learning, as the model will quickly run out of free space. I also want to emphasize that short-term continual learning is easy but unimpressive. <em>📌 I will explain why below</em>.</p>
-<ol>
-<li><strong>Memory Pool</strong>: such as A-GEM</li>
-</ol>
+</li>
+<li>
+<p><strong>Memory Pool</strong>: such as A-GEM</p>
 <p>This method requires an additional memory pool to store previous gradients or data. Occasionally, the model revisits the memory pool and attempts to "review" previous knowledge.</p>
+</li>
+</ol>
 <h2 id="some-imperfections-within-these-techniques">Some Imperfections Within These Techniques</h2>
 <p>What attracts me to continual learning is its motivation—i.e., learning to understand. To prevent catastrophic forgetting, the ideal approach is to learn the general rules of data, without over-concentrating on minor details. Therefore, I believe feature learning is one of the paths to continual learning.</p>
 <p>However, the techniques I’ve presented above do not consider data distillation at all. There is nothing about feature extraction or generalization. They focus primarily on reducing conflict during each training process. It’s like a double-edged sword. Perhaps in some scenarios, these techniques may work better, but at least for their baselines (which are typically tested on split-CIFAR100 or P-MNIST), they are somewhat less effective. Why do I say this? Because traditional backpropagation (BP) can already do just fine.</p>
@@ -441,7 +443,7 @@
 <p>Does this result surprise you? Well, the result is tested across 5 seeds, and they should be enough to draw meaningful conclusions. Although BP is highly unstable in continual learning (and in some seeds, it could forget everything—of course, I didn’t use those seeds for the baseline), some of its transformations achieve impressive accuracy.</p>
 <p>Why? How can BP** achieve such a high score? The answer is simple: because fundamentally, BP** is not continual learning. For each task, we are only training a single fully connected (fc) layer, as the previous parameters are frozen.</p>
 <p>📌: This is why I say there is little significance in achieving short-term continual learning, because BP can already do it very well—sometimes even better than techniques such as HAT.</p>
-<p>Of course, this is true for task increments only. In the class increment scenario, BP is completely broken, as the bottleneck becomes the classifier. But the core idea of feature learning remains the same.</p>
+<p>This holds true only for task increments. In the case of class increments, BP fails entirely, as the classifier becomes the bottleneck. However, the fundamental concept of feature learning stays unchanged.</p>
 <p><em>(Blog not finished; will update soon.)</em></p>
 
 
