@@ -681,6 +681,7 @@ loss_pos = torch.exp(1 + theta - channel_part[label].pow(2).mean())
 loss_net = torch.exp(1 - theta + channel_part[others].pow(2).mean())
 </code></pre>
 <p>This is a very innovative training method to me, and intuitively speaking, it treated every method as a classifier. It could work well on cifar-10 dataset, with an accuracy of 79%.</p>
+<p>Now this method does have a big problem, is that its capability is highly limited. It can only deal with image classification problem, with a limited number of classes. Since its training method is highly correlated with labels, some learning scenarios such as continual learning will no longer be applicable. Also, this method completely destroyed the feature learning behavior of models, which is destructive to the biological plausibility of neural network.</p>
 <p><img alt="" class="center" src="../images/CwC.png" style="height:300px;" /></p>
 <h3 id="c-self-contrastive-forward-forward-algorithm">C. Self-Contrastive Forward-Forward Algorithm</h3>
 <p><img alt="" class="center" src="../images/contrastive.png" style="height:300px;" /></p>
