@@ -52,25 +52,27 @@ Below, I will briefly introduce some popular continual learning techniques.
 
 ## Surprising performance of feature learning
 
-What attracts me to continual learning is its motivation—i.e., learning to understand. To prevent catastrophic forgetting, the ideal approach is to learn the general rules of data, without over-concentrating on minor details. Therefore, I believe feature learning is one of the paths to continual learning.
+> Before beginning, I want to say that this part in my opinion only, and it might be naive or not mature. Perhaps I did not get the gist of Continual Learning, and perhaps I will change my mind later, but it would not hurt to record and share my current thought, even if it might be wrong.
+
+What attracts me to continual learning is its motivation—i.e., learning to remember. To prevent catastrophic forgetting, the ideal approach is to learn the general rules of data, without over-concentrating on minor details, like human learn. We never remember what we have eaten in the previous days, but knowledge we learnt will be kept in our mind for a long time. We know what to focus and what not to focus. We know how to distill useful information.
 
 However, the techniques I’ve presented above do not consider data distillation at all. There is nothing about feature extraction or generalization. They focus primarily on reducing conflict during each training process. It’s like a double-edged sword. Perhaps in some scenarios, these techniques may work better, but at least for their baselines (which are typically tested on split-CIFAR100 or P-MNIST), they are somewhat less effective. Why do I say this? Because traditional backpropagation (BP) can already do just fine.
 
 ![Cifar100](Cifar100.png)
 
-**BP* means to load the model with the highest validation accuracy for each task.**
+**BP* refers to loading the model with the highest validation accuracy for each task.**
 
-**BP\** means to freeze the feature extractor (i.e., the parameters before the classifier).**
+**BP\*\* refers to freezing the feature extractor, which consists of the parameters before the classifier.**
 
-Does this result surprise you? Well, the result is tested across 5 seeds, and they should be enough to draw meaningful conclusions. Although BP is highly unstable in continual learning (and in some seeds, it could forget everything—of course, I didn’t use those seeds for the baseline), some of its transformations achieve impressive accuracy.
+Are these results surprising? They have been tested across five different seeds, which should be sufficient to draw meaningful conclusions. While BP is highly unstable in continual learning (and in some cases, it may completely forget previous tasks—naturally, I did not include those seeds in the baseline), some of its transformations reach remarkably high accuracy.
 
-Why? How can BP\*\* achieve such a high score? The answer is simple: because fundamentally, BP\*\* is not continual learning. For each task, we are only training a single fully connected (fc) layer, as the previous parameters are frozen.
+Why does BP\*\* achieve such outstanding performance? The reason is straightforward: at its core, BP\*\* is not true continual learning. For each task, only a single fully connected (fc) layer is trained, while the previous parameters remain frozen. But let’s consider it from the perspective of feature learning. Similar to the case of the UESTC dataset, the training of task 1 acts as a pretraining phase, while subsequent tasks function as downstream tasks. Pretraining on task 1 helps the model learn effective feature extraction, which in turn benefits the training of the fc layer in later tasks.
 
-📌: This is why I say there is little significance in achieving short-term continual learning, because BP can already do it very well—sometimes even better than techniques such as HAT.
+📌: This is why I argue that achieving short-term continual learning carries little significance—BP already performs quite well in this regard, sometimes even surpassing advanced techniques like HAT.
 
-This holds true only for task increments. In the case of class increments, BP fails entirely, as the classifier becomes the bottleneck. However, the fundamental concept of feature learning stays unchanged.
+However, this only holds for task-incremental learning. When applied to class-incremental learning, BP completely fails because the classifier becomes the limiting factor. Still, the underlying principle of feature learning remains unchanged.
 
-Even for dataset such as permuted-mnist, which was permuted randomly and contain no general features, BP\*\* still performs with outstanding accuracy. The feature extractor learnt to increase the rank of the feature matrix, leading to a bigger parameter space which contains more information.
+Even in datasets like permuted-MNIST, where the data is randomly permuted and lacks generalizable features, BP\*\* still achieves outstanding accuracy. The feature extractor adapts by increasing the rank of the feature matrix, thereby expanding the parameter space and retaining more useful information.
 
 ## A Remarkable but Flawed Method: HAT
 
