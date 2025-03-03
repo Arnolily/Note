@@ -1,12 +1,14 @@
 # Feature Learning from Continual Learning
 
-> This blog documents some of the insights on feature learning from the perspective of continual learning.
+> Continual Learning: learning to remember.
+>
+> Feature learning: learning to understand.
 
 **I have always been curious about one thing: what makes neural networks so powerful? One of the sub-questions is: what do neural networks actually learn?**
 
 A very famous example I would like to use is self-attention: ![image-20250220200020938](heatmap.png)
 
-When generating words, the model concentrates on different parts of the picture, similar to how we would.
+When generating words, the model concentrates on different parts of the picture, similar to how human would focus on.
 
 But are all models learned in this way?
 
@@ -48,7 +50,7 @@ Below, I will briefly introduce some popular continual learning techniques.
 
    	This method requires an additional memory pool to store previous gradients or data. Occasionally, the model revisits the memory pool and attempts to "review" previous knowledge.
 
-## Some Imperfections Within These Techniques
+## Surprising performance of feature learning
 
 What attracts me to continual learning is its motivation—i.e., learning to understand. To prevent catastrophic forgetting, the ideal approach is to learn the general rules of data, without over-concentrating on minor details. Therefore, I believe feature learning is one of the paths to continual learning.
 
@@ -68,4 +70,16 @@ Why? How can BP\*\* achieve such a high score? The answer is simple: because fun
 
 This holds true only for task increments. In the case of class increments, BP fails entirely, as the classifier becomes the bottleneck. However, the fundamental concept of feature learning stays unchanged.
 
-*(Blog not finished; will update soon.)*
+Even for dataset such as permuted-mnist, which was permuted randomly and contain no general features, BP\*\* still performs with outstanding accuracy. The feature extractor learnt to increase the rank of the feature matrix, leading to a bigger parameter space which contains more information.
+
+## A Remarkable but Flawed Method: HAT
+
+When I first implemented HAT, its performance left me completely astonished. It *simply does not forget*.
+
+However, this comes at a cost. One peculiar issue is its incompatibility with BatchNorm, along with a strict learning rate limitation of 5e-2. A standard toy model that performs well with other techniques must be specifically adjusted to work with HAT. The incompatibility with BatchNorm significantly restricts HAT’s ability to scale to larger models due to potential numerical instability.
+
+But that’s not the only drawback. A fundamental issue with HAT is its architecture, which essentially partitions the model into *num_classes* segments. When making a prediction, the model activates only a specific portion of itself. While this mechanism effectively prevents forgetting, it raises concerns when handling a large number of tasks—or even an infinite number, as defined in lifelong learning. In practice, our toy model failed on split-Tiny-ImageNet when using HAT, despite performing flawlessly with other methods.
+
+## Conclusion
+
+I believe a promising direction for continual learning should align with human learning principles—**focusing on understanding rather than mere memorization**. In other words, leveraging **feature learning** to achieve continual learning would be a far more effective approach.

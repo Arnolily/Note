@@ -71,11 +71,13 @@ This paper re-implemented the FF algorithm, and it changed the way to use label 
     channel_size = output.shape[0] # channel_size = C
     channel_part = torch.split(output, 
     channel_size // num_of_classes, dim = 1) # divide output along the channel dimension
-
+    
     loss_pos = torch.exp(1 + theta - channel_part[label].pow(2).mean())
     
     loss_net = torch.exp(1 - theta + channel_part[others].pow(2).mean())
 This is a very innovative training method to me, and intuitively speaking, it treated every method as a classifier. It could work well on cifar-10 dataset, with an accuracy of 79%.
+
+Now this method does have a big problem, is that its capability is highly limited. It can only deal with image classification problem, with a limited number of classes. Since its training method is highly correlated with labels, some learning scenarios such as continual learning will no longer be applicable. Also, this method completely destroyed the feature learning behavior of models, which is destructive to the biological plausibility of neural network.
 
 ![](images/CwC.png){: .center style="height:300px;"}
 
