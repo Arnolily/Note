@@ -535,17 +535,9 @@
 </blockquote>
 <h2 id="possible-advantages-of-batch-normalization-bn"><strong>Possible Advantages of Batch Normalization (BN)</strong></h2>
 <h3 id="improving-numerical-stability"><strong>Improving Numerical Stability</strong></h3>
-<p>Suppose we have a 1-layer linear neural network for a regression problem. The output <script type="math/tex">o</script> and the Mean Squared Error (MSE) loss <script type="math/tex">\mathcal{L}_{MSE}</script> are:</p>
-<p>
-<script type="math/tex; mode=display">o = \sigma(w \cdot x)</script>
-<br />
-<script type="math/tex; mode=display">\mathcal{L}_{MSE} = \frac{1}{2}(o - y)^2</script>
-</p>
-<p>Through backpropagation, the gradient <script type="math/tex">\nabla \mathcal{L}_{w}</script> is:</p>
-<p>
-<script type="math/tex; mode=display">\nabla \mathcal{L}_{w} = (o - y) \cdot \frac{\partial o}{\partial (w)} = o \cdot x \cdot \sigma'</script>
-</p>
-<p>If the network has <script type="math/tex">N</script> layers, then the gradient of the first layer would be <script type="math/tex">o \cdot \prod_{i=1}^{N} \frac{\partial o}{\partial (w)}</script>, and the product of this sequence would tend to 0 or infinity. This is <strong>numerical instability</strong>.</p>
+<p>Consider a <strong>1-layer linear neural network</strong> for a regression problem. The output <script type="math/tex"> o </script> and the <strong>Mean Squared Error (MSE) loss</strong> are defined as: <script type="math/tex; mode=display"> o = \sigma(WX) </script>
+<script type="math/tex; mode=display"> \mathcal{L}_{MSE} = \frac{1}{2} \| o - Y \|^2 </script> where: - <script type="math/tex"> W \in \mathbb{R}^{m \times n} </script> is the weight matrix, - <script type="math/tex"> X \in \mathbb{R}^{n \times 1} </script> is the input vector, - <script type="math/tex"> Y \in \mathbb{R}^{m \times 1} </script> is the target output, - <script type="math/tex"> \sigma(\cdot) </script> is an activation function. The gradient of the loss with respect to the weights is computed using <strong>backpropagation</strong>: <script type="math/tex; mode=display"> \nabla_W \mathcal{L} = \frac{\partial \mathcal{L}}{\partial W} = (o - Y) \odot \sigma'(WX) X^T </script> where:  <script type="math/tex"> \odot </script> denotes element-wise multiplication, <script type="math/tex"> \sigma'(WX) </script> is the derivative of the activation function.</p>
+<p>If the network has <script type="math/tex">N</script> layers, then the gradient of the first layer would be <script type="math/tex; mode=display"> \nabla_{W^{(1)}} \mathcal{L} = (o - Y) \cdot \prod_{i=1}^{N} \frac{\partial o^{(i)}}{\partial W^{(i)}} </script>, and the product of this sequence would tend to 0 or infinity. This is <strong>numerical instability</strong>.</p>
 <p>With BN, we can restrict <script type="math/tex">x</script> to any Gaussian distribution, thus mitigating the instability of <script type="math/tex">x</script> and <script type="math/tex">\sigma'</script>.</p>
 <h3 id="perhaps-not-alleviating-internal-covariate-shift-1"><strong>(Perhaps Not) Alleviating Internal Covariate Shift</strong> [1]</h3>
 <p>In the original paper on Batch Normalization, they defined Internal Covariate Shift (ICS).</p>
@@ -556,8 +548,8 @@
 <p>
 <script type="math/tex; mode=display">Y = \mathcal{F}\{X\}</script>
 </p>
-<p>where <script type="math/tex">\mathcal{F}</script> is the mapping function between input <script type="math/tex">X</script> and output <script type="math/tex">Y</script>. Essentially, layers are learning this map between input patterns and output patterns. However, due to ICS, the input pattern could constantly change, which might disrupt the learned mapping function. Therefore, ICS is believed to have a detrimental effect on the training process.</p>
-<p>However, I propose an alternative understanding of ICS. In traditional machine learning, we assume that data are <strong>IID</strong> (i.e., independently and identically distributed). This is the foundation of machine learning and the prerequisite of <strong>MLE</strong> (i.e., Maximum Likelihood Estimation), which is the original form of all loss functions. By using BN, we can ensure the second <strong>I</strong> in <strong>IID</strong>, which is identically distributed. This could lead to better generalization performance for the network.</p>
+<p>where <script type="math/tex">\mathcal{F}</script> is the mapping function between input <script type="math/tex">X</script> and output <script type="math/tex">Y</script>. Essentially, layers are learning this map between input patterns and output patterns. However, due to ICS, the input pattern could constantly change, which might disrupt the learned mapping function. As a result, the gradient (which is related to the input) is also affected by the change of distribution in the input. Therefore, ICS is believed to have a detrimental effect on the training process.</p>
+<p>However, I propose an alternative understanding of ICS. In traditional machine learning, we assume that data are <strong>IID</strong> (i.e., independently and identically distributed). This is the foundation of machine learning and the prerequisite of <strong>MLE</strong> (i.e., Maximum Likelihood Estimation), which is the original form of all loss functions. By using BN, we can ensure that the data is identically distributed. This could lead to better generalization performance for the network.</p>
 <p><em>Other researchers, however, have shown that ICS does not affect performance and that BN does not reduce ICS.</em> They prefer to explain BN’s effectiveness differently.</p>
 <h3 id="smoother-loss-landscape-2"><strong>Smoother Loss Landscape</strong> [2]</h3>
 <p>These researchers demonstrated that BN contributes to a smoother loss landscape, which can be visualized:</p>
