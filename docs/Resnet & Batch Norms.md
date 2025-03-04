@@ -6,16 +6,9 @@
 
 ### **Improving Numerical Stability**
 
-Suppose we have a 1-layer linear neural network for a regression problem. The output \(o\) and the Mean Squared Error (MSE) loss \(\mathcal{L}_{MSE}\) are:
+Consider a **1-layer linear neural network** for a regression problem. The output \( o \) and the **Mean Squared Error (MSE) loss** are defined as: \[ o = \sigma(WX) \] \[ \mathcal{L}_{MSE} = \frac{1}{2} \| o - Y \|^2 \] where: - \( W \in \mathbb{R}^{m \times n} \) is the weight matrix, - \( X \in \mathbb{R}^{n \times 1} \) is the input vector, - \( Y \in \mathbb{R}^{m \times 1} \) is the target output, - \( \sigma(\cdot) \) is an activation function. The gradient of the loss with respect to the weights is computed using **backpropagation**: \[ \nabla_W \mathcal{L} = \frac{\partial \mathcal{L}}{\partial W} = (o - Y) \odot \sigma'(WX) X^T \] where:  \( \odot \) denotes element-wise multiplication, \( \sigma'(WX) \) is the derivative of the activation function.
 
-$$o = \sigma(w \cdot x)$$  
-$$\mathcal{L}_{MSE} = \frac{1}{2}(o - y)^2$$
-
-Through backpropagation, the gradient \(\nabla \mathcal{L}_{w}\) is:
-
-$$\nabla \mathcal{L}_{w} = (o - y) \cdot \frac{\partial o}{\partial (w)} = o \cdot x \cdot \sigma'$$
-
-If the network has \(N\) layers, then the gradient of the first layer would be \(o \cdot \prod_{i=1}^{N} \frac{\partial o}{\partial (w)}\), and the product of this sequence would tend to 0 or infinity. This is **numerical instability**.
+If the network has \(N\) layers, then the gradient of the first layer would be \[ \nabla_{W^{(1)}} \mathcal{L} = (o - Y) \cdot \prod_{i=1}^{N} \frac{\partial o^{(i)}}{\partial W^{(i)}} \], and the product of this sequence would tend to 0 or infinity. This is **numerical instability**.
 
 With BN, we can restrict \(x\) to any Gaussian distribution, thus mitigating the instability of \(x\) and \(\sigma'\).
 
@@ -29,9 +22,9 @@ Mathematically, each layer can be derived as:
 
 $$Y = \mathcal{F}\{X\}$$
 
-where \(\mathcal{F}\) is the mapping function between input \(X\) and output \(Y\). Essentially, layers are learning this map between input patterns and output patterns. However, due to ICS, the input pattern could constantly change, which might disrupt the learned mapping function. Therefore, ICS is believed to have a detrimental effect on the training process.
+where \(\mathcal{F}\) is the mapping function between input \(X\) and output \(Y\). Essentially, layers are learning this map between input patterns and output patterns. However, due to ICS, the input pattern could constantly change, which might disrupt the learned mapping function. As a result, the gradient (which is related to the input) is also affected by the change of distribution in the input. Therefore, ICS is believed to have a detrimental effect on the training process.
 
-However, I propose an alternative understanding of ICS. In traditional machine learning, we assume that data are **IID** (i.e., independently and identically distributed). This is the foundation of machine learning and the prerequisite of **MLE** (i.e., Maximum Likelihood Estimation), which is the original form of all loss functions. By using BN, we can ensure the second **I** in **IID**, which is identically distributed. This could lead to better generalization performance for the network.
+However, I propose an alternative understanding of ICS. In traditional machine learning, we assume that data are **IID** (i.e., independently and identically distributed). This is the foundation of machine learning and the prerequisite of **MLE** (i.e., Maximum Likelihood Estimation), which is the original form of all loss functions. By using BN, we can ensure that the data is identically distributed. This could lead to better generalization performance for the network.
 
 _Other researchers, however, have shown that ICS does not affect performance and that BN does not reduce ICS._ They prefer to explain BN’s effectiveness differently.
 
