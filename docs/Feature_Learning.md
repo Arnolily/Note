@@ -64,13 +64,19 @@ However, the techniques I’ve presented above do not consider data distillation
 
 **BP\*\* refers to freezing the feature extractor, which consists of the parameters before the classifier.**
 
+**OL: a bottom to top training method using unsupervised orthogonal loss** 
+
+>  **Orthogonal loss**: Given an output matrix of each layer \( Y \), the orthogonality loss is defined as: \[ \mathcal{L}_{\text{ortho}} = \left\| \mathcal{N}(Y) - I \right\|^2_F \] where:  \( \mathcal{N}(Y) \) represents the **normalized kernel** of \( Y \), computed as:   \[  \mathcal{N}(Y) = \frac{Y}{\|Y\|_2} \cdot \left(\frac{Y}{\|Y\|_2}\right)^T  \]  \( I \) is the identity matrix.  \( \|\cdot\|_F \) denotes the **Frobenius norm**, which measures the difference between the normalized covariance and the identity matrix.
+
 Are these results surprising? They have been tested across five different seeds, which should be sufficient to draw meaningful conclusions. While BP is highly unstable in continual learning (and in some cases, it may completely forget previous tasks—naturally, I did not include those seeds in the baseline), some of its transformations reach remarkably high accuracy.
 
-Why does BP\*\* achieve such outstanding performance? The reason is straightforward: at its core, BP\*\* is not true continual learning. For each task, only a single fully connected (fc) layer is trained, while the previous parameters remain frozen. But let’s consider it from the perspective of feature learning. Similar to the case of the UESTC dataset, the training of task 1 acts as a pretraining phase, while subsequent tasks function as downstream tasks. Pretraining on task 1 helps the model learn effective feature extraction, which in turn benefits the training of the fc layer in later tasks.
+**Why does BP\*\* achieve such outstanding performance?** The reason is straightforward: at its core, BP\*\* is not true continual learning. For each task, only a single fully connected (fc) layer is trained, while the previous parameters remain frozen. But let’s consider it from the perspective of feature learning. Similar to the case of the UESTC dataset, the training of task 1 acts as a pretraining phase, while subsequent tasks function as downstream tasks. Pretraining on task 1 helps the model learn effective feature extraction, which in turn benefits the training of the fc layer in later tasks.
 
 📌: This is why I argue that achieving short-term continual learning carries little significance—BP already performs quite well in this regard, sometimes even surpassing advanced techniques like HAT.
 
-However, this only holds for task-incremental learning. When applied to class-incremental learning, BP completely fails because the classifier becomes the limiting factor. Still, the underlying principle of feature learning remains unchanged.
+**Why does OL achieve a satisfactory accuracy with no supervise signal and a weird looking loss?** The reason is, Orthogonal loss is actually *feature learning*. Let us revisit orthogonal loss, what is it? Essentially, OL encourages the model to **increase the rank of the output features**, meaning it maximizes the amount of information retained in the learned representations. The higher the rank, the richer the feature set. So, instead of letting the model learn to extract feature by itself, I tell it what to do: simply just extract much information as possible, and leave the remaining task to classifier! Pretty much similar to things like PCA huh? a downsampling technique designed to **preserve as much information as possible while reducing dimensionality**. (I am proud of my instinct, I think this weird loss could work before I implemented this)
+
+However, this only holds for task-incremental learning. When applied to class-incremental learning, BP and OL completely fails because the classifier becomes the limiting factor. Still, the underlying principle of feature learning remains unchanged.
 
 Even in datasets like permuted-MNIST, where the data is randomly permuted and lacks generalizable features, BP\*\* still achieves outstanding accuracy. The feature extractor adapts by increasing the rank of the feature matrix, thereby expanding the parameter space and retaining more useful information.
 
