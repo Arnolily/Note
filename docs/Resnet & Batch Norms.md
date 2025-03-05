@@ -34,7 +34,7 @@ These researchers demonstrated that BN contributes to a smoother loss landscape,
 
 ![Loss Landscape](Landscape.png)
 
-With BN, the loss landscape is smoother, which improves training efficiency and allows for a higher learning rate.
+A smoother loss landscape enables gradient descent (GD) to navigate more efficiently, avoiding sharp minima that may lead to poor generalization. This smoothing effect allows for the use of higher learning rates, which in turn accelerates convergence.
 
 ### **Better Use of Non-linearity** [3]
 
