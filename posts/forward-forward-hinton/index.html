@@ -8,8 +8,6 @@
       
       
       
-        <link rel="canonical" href="https://example.com/en/posts/forward-forward-hinton/">
-      
       
         <link rel="prev" href="../resnet-batch-norms/">
       
@@ -17,16 +15,16 @@
         <link rel="next" href="../feature-learning-continual/">
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
     
     
       
-        <title>The Forward-Forward Algorithm: A New Revolution Brought by Geoffrey Hinton - Arnolily (English)</title>
+        <title>The Forward-Forward Algorithm: A New Revolution Brought by Geoffrey Hinton - Arnolily</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.84d31ad4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
       
       
 
@@ -45,7 +43,7 @@
       
     
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -80,7 +78,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Arnolily (English)" class="md-header__button md-logo" aria-label="Arnolily (English)" data-md-component="logo">
+    <a href="../.." title="Arnolily" class="md-header__button md-logo" aria-label="Arnolily" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -94,7 +92,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Arnolily (English)
+            Arnolily
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -110,6 +108,32 @@
     
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../zh/posts/forward-forward-hinton/" hreflang="zh" class="md-select__link">
+              中文
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
     
     
       
@@ -178,13 +202,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Arnolily (English)" class="md-nav__button md-logo" aria-label="Arnolily (English)" data-md-component="logo">
+    <a href="../.." title="Arnolily" class="md-nav__button md-logo" aria-label="Arnolily" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    Arnolily (English)
+    Arnolily
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -196,7 +220,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../" class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -709,7 +733,7 @@
 <blockquote>
 <p>And lo, he declared, “Let there be a new way,” and thus the Forward-Forward algorithm was brought forth, that it might supplant the backpropagation he had once bestowed upon the minds of men in the year of 1986. And it was good. ------ <em>Hinton's Epiphany: A New Era in Deep Learning</em> (I made this up)</p>
 </blockquote>
-<p><img alt="Hinton" class="center" src="../../../images/hinton.jpeg" style="height:300px;" /></p>
+<p><img alt="Hinton" class="center" src="../../images/hinton.jpeg" style="height:300px;" /></p>
 <h2 id="prerequisite-problems-with-the-forward-backward-method">Prerequisite: Problems with the Forward-Backward Method</h2>
 <p>Nowadays, most networks utilize Backpropagation <strong>(BP)</strong> to optimize the network. This is very effective, but its inherent flaws limit the upper bound of its capability. This inspired Hinton and the community to pursue a new method.</p>
 <h3 id="what-is-the-limitation">What is the limitation?</h3>
@@ -739,10 +763,10 @@ $$ \mathcal{L}_{neg} = \log (1 - \theta + y^2) $$</p>
 <p>During positive learning, we input 'fact.' During negative learning, we input 'delusion.'</p>
 <p>By 'fact,' we mean the ground truth, while 'delusion' refers to something random or generated by some generative models.</p>
 <p>For example, in a simple MNIST dataset classification problem, labels will be mapped to the first 10 pixels on the image. 'Fact' could be the image with the correct label mapping, while 'delusion' would be the image with a random label mapping.</p>
-<p><img alt="fact" class="center" src="../../../images/fact.png" style="height:300px;" />
-<img alt="delusion" class="center" src="../../../images/delusion.png" style="height:300px;" /></p>
+<p><img alt="fact" class="center" src="../../images/fact.png" style="height:300px;" />
+<img alt="delusion" class="center" src="../../images/delusion.png" style="height:300px;" /></p>
 <p>Another example for unsupervised learning would be 'fact' as the original image and 'delusion' as a combination of two different images.</p>
-<p><img alt="" class="center" src="../../../images/delusion-unsupervised.png" style="height:300px;" /></p>
+<p><img alt="" class="center" src="../../images/delusion-unsupervised.png" style="height:300px;" /></p>
 <p>For RNNs and language models, during the positive training period, inputs will be real text data from the dataset. After the positive training period, the model will generate a piece of text data to serve as input for the negative training period.</p>
 <h3 id="c-inference">C. Inference</h3>
 <p>During the inference process, the network will concatenate all the goodnesses from each layer, and choose the prediction with the biggest goodness.</p>
@@ -755,7 +779,7 @@ $$ \mathcal{L}_{neg} = \log (1 - \theta + y^2) $$</p>
 <h3 id="a-training-convolutional-neural-networks-with-the-forward-forward-algorithm">A. Training Convolutional Neural Networks with the Forward-Forward Algorithm</h3>
 <p>This paper proposed an intuitive method for generating negative samples. They defined different labels as 2-D strips matching the size of the image and mapped them onto the images. Unlike the original 1-D one-hot labels, these 2-D labels are not treated as marginal information, meaning they are retained during convolution. As a result, they can be captured by the CNN model, potentially leading to better performance than the vanilla Forward-Forward (FF) algorithm.</p>
 <p>However, the results from my experiments indicate that this method may not be as effective on more complex datasets such as CIFAR-10 and CIFAR-100. Please note that the paper does not provide code, and it is possible, although not likely, that my re-implementation on the CIFAR datasets contain errors.</p>
-<p><img alt="" class="center" src="../../../images/strips.png" style="height:300px;" /></p>
+<p><img alt="" class="center" src="../../images/strips.png" style="height:300px;" /></p>
 <h3 id="bconvolutional-channel-wise-competitive-learning-for-the-forward-forward-algorithm">B.Convolutional Channel-wise Competitive Learning for the Forward-Forward Algorithm</h3>
 <p>This paper re-implemented the FF algorithm, and it changed the way to use label information. Still remember that we want to lift up the output during positive training and push down during negative training? This time, they combined the positive training and negative training. When their model is trained, the output of each layer will be uniformly divide into [num_of_classes] parts, on the channel dimension. Then, the magnitude of the part that aligns with the label will be lifted up, and the other parts will be pushed down. It would be better elaborated in this pseudo code:</p>
 <pre><code>output = layer(input) # dimension = [C, H, W]
@@ -769,9 +793,9 @@ loss_net = torch.exp(1 - theta + channel_part[others].pow(2).mean())
 </code></pre>
 <p>This is a very innovative training method to me, and intuitively speaking, it treated every method as a classifier. It could work well on cifar-10 dataset, with an accuracy of 79%.</p>
 <p>Now this method does have a big problem, is that its capability is highly limited. It can only deal with image classification problem, with a limited number of classes. Since its training method is highly correlated with labels, some learning scenarios such as continual learning will no longer be applicable. Also, this method completely destroyed the feature learning behavior of models, which is destructive to the biological plausibility of neural network.</p>
-<p><img alt="" class="center" src="../../../images/CwC.png" style="height:300px;" /></p>
+<p><img alt="" class="center" src="../../images/CwC.png" style="height:300px;" /></p>
 <h3 id="c-self-contrastive-forward-forward-algorithm">C. Self-Contrastive Forward-Forward Algorithm</h3>
-<p><img alt="" class="center" src="../../../images/contrastive.png" style="height:300px;" /></p>
+<p><img alt="" class="center" src="../../images/contrastive.png" style="height:300px;" /></p>
 <p>I believe this figure could do serve as an introduction. This method involves simply inputting two images and maximizing goodness when two images are the same, and minimizing goodness when they are not the same.</p>
 <p>The paper is still in preprint version and no code is provided, and I failed to reimplement their method. So I will make no comment about this idea.</p>
 <h2 id="references">References</h2>
@@ -828,10 +852,10 @@ loss_net = torch.exp(1 - theta + channel_part[others].pow(2).mean())
     
     
       
-      <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
       
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
