@@ -1,0 +1,502 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>我对 ResNet 与 BatchNorm 的一些理解 - Arnolily</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#resnet-batchnorm" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../" title="Arnolily" class="md-header__button md-logo" aria-label="Arnolily" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Arnolily
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              我对 ResNet 与 BatchNorm 的一些理解
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="选择当前语言">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../posts/resnet-batch-norms/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="zh" class="md-select__link">
+              中文
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../" title="Arnolily" class="md-nav__button md-logo" aria-label="Arnolily" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Arnolily
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    首页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#batch-normalizationbn" class="md-nav__link">
+    <span class="md-ellipsis">
+      Batch Normalization（BN）的可能优势
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Batch Normalization（BN）的可能优势">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 提升数值稳定性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-internal-covariate-shiftics1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.（也许并不）缓解 Internal Covariate Shift（ICS）[1]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 更平滑的损失曲面 [2]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 更充分地利用非线性 [3]
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skip-connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Skip-Connection 的可能优势
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Skip-Connection 的可能优势">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 让梯度流动更顺滑
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 缓解网络退化问题
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      参考文献
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="resnet-batchnorm">我对 ResNet 与 BatchNorm 的一些理解</h1>
+<blockquote>
+<p>跳跃连接（skip-connection）和各种归一化（包括 BatchNorm）几乎出现在所有现代神经网络中。
+但不少论文在使用这些技术时并不严谨，反而增加了模型的不必要复杂度。
+所以回到基础、重新理解它们，对做实验和思考理论都很重要。</p>
+</blockquote>
+<h2 id="batch-normalizationbn">Batch Normalization（BN）的可能优势</h2>
+<h3 id="1">1. 提升数值稳定性</h3>
+<p>考虑一个用于回归的一层线性神经网络。其输出 <span class="arithmatex">\( o \)</span> 与 <strong>均方误差（MSE）损失</strong> 定义为：</p>
+<div class="arithmatex">\[ o = \sigma(WX) \]</div>
+<div class="arithmatex">\[ \mathcal{L}_{MSE} = \frac{1}{2} \| o - Y \|^2 \]</div>
+<p>其中：</p>
+<ul>
+<li><span class="arithmatex">\( W \in \mathbb{R}^{m \times n} \)</span> 为权重矩阵；</li>
+<li><span class="arithmatex">\( X \in \mathbb{R}^{n \times 1} \)</span> 为输入向量；</li>
+<li><span class="arithmatex">\( Y \in \mathbb{R}^{m \times 1} \)</span> 为目标输出；</li>
+<li><span class="arithmatex">\( \sigma(\cdot) \)</span> 为激活函数。</li>
+</ul>
+<p>损失对权重的梯度为：</p>
+<div class="arithmatex">\[ \nabla_W \mathcal{L} = \frac{\partial \mathcal{L}}{\partial W} = (o - Y) \odot \sigma'(WX) X^T \]</div>
+<p>其中 <span class="arithmatex">\( \odot \)</span> 表示逐元素相乘，<span class="arithmatex">\( \sigma'(WX) \)</span> 为激活函数的导数。</p>
+<p>如果网络有 <span class="arithmatex">\(N\)</span> 层，那么第一层的梯度大致为：</p>
+<div class="arithmatex">\[ \nabla_{W^{(1)}} \mathcal{L} = (o - Y) \cdot \prod_{i=1}^{N} \frac{\partial o^{(i)}}{\partial W^{(i)}} \]</div>
+<p>这串连乘项很容易趋近于 0 或无穷大，也就是我们熟悉的<strong>梯度消失 / 爆炸</strong>问题，本质上是一种<strong>数值不稳定性</strong>。</p>
+<p>加入 BN 后，我们可以将每一层的输入 <span class="arithmatex">\(x\)</span> 约束到某个高斯分布附近，从而缓和 <span class="arithmatex">\(x\)</span> 和 <span class="arithmatex">\(\sigma'\)</span> 的数值范围，减轻数值不稳定。</p>
+<h3 id="2-internal-covariate-shiftics1">2.（也许并不）缓解 Internal Covariate Shift（ICS）[1]</h3>
+<p>在 BN 原始论文中，作者提出了 Internal Covariate Shift（内部协变量偏移，ICS）的概念：</p>
+<blockquote>
+<p>ICS 指的是：由于前面层参数的更新，导致某一层输入分布不断发生变化的现象。</p>
+</blockquote>
+<p>形式化地，每一层可以写成：</p>
+<div class="arithmatex">\[ Y = \mathcal{F}\{X\} \]</div>
+<p>也就是说，网络每一层都在学习从输入模式 <span class="arithmatex">\(X\)</span> 到输出模式 <span class="arithmatex">\(Y\)</span> 的映射 <span class="arithmatex">\(\mathcal{F}\)</span>。如果输入分布一直在变，那么这个映射就会被不断“扰动”；梯度也会随之变化，进而影响训练稳定性。</p>
+<p>从这个角度看，ICS 被认为会妨碍训练，而 BN 通过“重新标准化”每一层的输入，似乎在一定程度上减弱了 ICS。</p>
+<p>但我更喜欢从经典机器学习的角度来理解：我们通常假设数据是 <strong>IID</strong> 的（独立同分布），这是最大似然估计（MLE）以及各种损失函数推导的基础。BN 某种程度上让各层看到的数据更加“同分布”，这可能帮助网络获得更好的泛化性能。</p>
+<p><em>不过，也有研究表明：BN 实际上并没有明显减弱 ICS，而 ICS 本身对性能也没那么关键。</em> 他们更倾向于用别的视角解释 BN 的有效性。</p>
+<h3 id="3-2">3. 更平滑的损失曲面 [2]</h3>
+<p>有工作通过理论与可视化展示了：BN 会让损失曲面变得更加平滑：</p>
+<p><img alt="Loss Landscape" src="../../../images/Landscape.png" /></p>
+<p>更平滑的损失曲面意味着梯度下降更容易“走得动”，不那么容易卡在又窄又尖的极小值里。这样一来，我们可以使用更大的学习率，加快收敛，同时不太牺牲泛化。</p>
+<h3 id="4-3">4. 更充分地利用非线性 [3]</h3>
+<p>注意，在对特征图 <span class="arithmatex">\(x\)</span> 做完标准化之后，BN 还会再做一次线性变换（缩放与平移）：</p>
+<p><img alt="Batch Normalization" src="../../../images/BN.png" style="height:300px;" /></p>
+<p>假设我们使用 sigmoid 作为激活函数：</p>
+<p><img alt="Sigmoid Function" src="../../../images/sigmoid-function.png" style="height:300px;" /></p>
+<p>可以看到，当 <span class="arithmatex">\(x \in (-1, 1)\)</span> 时，<span class="arithmatex">\(\sigma(x) \approx x\)</span>，也就是说非线性几乎退化成恒等映射。这显然不利于提升模型表达力。</p>
+<p>通过 BN 后接的缩放和平移，我们可以把输入重新拉伸到更“利用”激活函数非线性的区域，使得网络真正发挥非线性模型的优势。</p>
+<p>即便是 ReLU，看起来没那么脆弱，但如果某个神经元总是 <span class="arithmatex">\(x &gt; 0\)</span> 或总是 <span class="arithmatex">\(x &lt; 0\)</span>，它要么变成线性单元，要么几乎不起作用。BN 的缩放和平移也有助于缓和这种情况。</p>
+<p>当然，从我的视角看，这可能并不是 BN 最核心的贡献。一些实验甚至发现，把 BN 放在激活函数之后，有时效果会更好。</p>
+<h2 id="skip-connection">Skip-Connection 的可能优势</h2>
+<h3 id="1_1">1. 让梯度流动更顺滑</h3>
+<p>ResNet 的作者 He 等人在 [4] 中指出，跳跃连接的一个关键好处在于改善梯度流动。对于一个带有残差连接的层：</p>
+<div class="arithmatex">\[\mathbf{x}_{l+1} = \mathbf{x}_l + \mathcal{F}(\mathbf{x}_l, \mathcal{W}_l)\]</div>
+<p>其梯度为：</p>
+<div class="arithmatex">\[\frac{\partial \mathcal{E}}{\partial \mathbf{x}_l} = \frac{\partial \mathcal{E}}{\partial \mathbf{x}_L} \frac{\partial \mathbf{x}_L}{\partial \mathbf{x}_l} = \frac{\partial \mathcal{E}}{\partial \mathbf{x}_L} \left(1 + \frac{\partial}{\partial \mathbf{x}_l} \sum_{i=l}^{L-1} \mathcal{F}(\mathbf{x}_i, \mathcal{W}_i)\right)\]</div>
+<p>有了残差结构，梯度中总会多出一条“恒等映射”的通路，使得梯度不至于在传播中快速消失。</p>
+<h3 id="2">2. 缓解网络退化问题</h3>
+<p>在 ResNet 的原始论文中，作者提出了“网络退化问题”：</p>
+<blockquote>
+<p>当我们把网络堆得更深时，即便没有明显过拟合，测试集精度有时反而会下降。</p>
+</blockquote>
+<p>直观讲，如果更深的网络表现得比浅层网络还差，那说明“额外的那几层”还不如一个简单的恒等映射。于是他们引入了 skip-connection，把“恒等映射”硬编码进网络结构里，让更深的网络<strong>至少</strong>可以退化成“若干层恒等映射 + 一个浅层网络”。</p>
+<p>真正有趣的问题是：网络退化的本质原因到底是什么？是否真的是“学不好恒等映射”？这一点目前仍然有不同观点，后续不少工作都在尝试给出新的解释。</p>
+<p><strong>梯度相关性视角 [2]</strong></p>
+<p>Balduzzi 等人在 [2] 中提出了另一个角度：他们认为 ResNet 缓解了所谓的“shattered gradients”问题，并用自相关函数（ACF）来量化梯度的“平滑程度”。</p>
+<blockquote>
+<p>shattered gradients 指的是：相邻样本点的梯度几乎互不相关，
+这会让很多假设“邻近点梯度相似”的优化算法（如带动量的方法）变得低效。</p>
+</blockquote>
+<p>在强假设下，他们证明并实验展示了：skip-connection 可以提高梯度的 ACF，从而减轻 shattered gradients 问题。不过他们的假设有点强，我个人对这一解释持保留态度。</p>
+<p><img alt="Autocorrelation Function (ACF)" src="../../../images/ACF.png" title="title" /></p>
+<h2 id="_1">参考文献</h2>
+<p>[1] Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift.<br />
+[2] How Does Batch Normalization Help Optimization?<br />
+[3] The Shattered Gradients Problem: If ResNets Are the Answer, Then What Is the Question?<br />
+[4] Identity Mappings in Deep Residual Networks.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

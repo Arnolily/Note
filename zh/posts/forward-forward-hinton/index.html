@@ -1,0 +1,590 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Forward-Forward 算法：Geoffrey Hinton 带来的新革命 - Arnolily</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#forward-forward-geoffrey-hinton" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../" title="Arnolily" class="md-header__button md-logo" aria-label="Arnolily" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Arnolily
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Forward-Forward 算法：Geoffrey Hinton 带来的新革命
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="选择当前语言">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../posts/forward-forward-hinton/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="zh" class="md-select__link">
+              中文
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../" title="Arnolily" class="md-nav__button md-logo" aria-label="Arnolily" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Arnolily
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    首页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#-forward-backward" class="md-nav__link">
+    <span class="md-ellipsis">
+      前置背景：前向-反向（Forward-Backward）方式的问题
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="前置背景：前向-反向（Forward-Backward）方式的问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      这些局限是什么？
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forward-forward" class="md-nav__link">
+    <span class="md-ellipsis">
+      Forward-Forward 算法的基本思想
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Forward-Forward 算法的基本思想">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a" class="md-nav__link">
+    <span class="md-ellipsis">
+      A. 损失函数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-fact-delusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      B. 数据构造：Fact 与 Delusion
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c" class="md-nav__link">
+    <span class="md-ellipsis">
+      C. 推理过程
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d" class="md-nav__link">
+    <span class="md-ellipsis">
+      D. 生物学类比
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e" class="md-nav__link">
+    <span class="md-ellipsis">
+      E. 局限性
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      一些后续工作的进展
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一些后续工作的进展">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-training-convolutional-neural-networks-with-the-forward-forward-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      A. 《Training Convolutional Neural Networks with the Forward-Forward Algorithm》
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-convolutional-channel-wise-competitive-learning-for-the-forward-forward-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      B. 《Convolutional Channel-wise Competitive Learning for the Forward-Forward Algorithm》
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-self-contrastive-forward-forward-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      C. Self-Contrastive Forward-Forward Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      参考文献
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="forward-forward-geoffrey-hinton">Forward-Forward 算法：Geoffrey Hinton 带来的新革命</h1>
+<p><strong><em>在 74 岁高龄时，Geoffrey Hinton 提出了一个用来取代反向传播（Backpropagation）的新算法——而反向传播正是他在 1986 年大力推广的技术。这个算法试图让深度学习更接近“生物可解释”的学习方式。本文算是对他的致敬，也记录我对这篇工作以及后续一些进展的理解。</em></strong></p>
+<blockquote>
+<p>“于是他说：‘要有一条新路’，
+Forward-Forward 算法便由此诞生，用以取代他在 1986 年赐予世人的反向传播。而这一切，是好的。”  —— <em>Hinton 的顿悟：深度学习的新纪元</em>（我瞎编的）</p>
+</blockquote>
+<p><img alt="Hinton" class="center" src="../../../images/hinton.jpeg" style="height:300px;" /></p>
+<h2 id="-forward-backward">前置背景：前向-反向（Forward-Backward）方式的问题</h2>
+<p>当今绝大多数神经网络都使用反向传播（Backpropagation，简称 <strong>BP</strong>）来优化参数。这一方法极其成功，但它也有一些天生的局限，某种程度上限制了我们对智能的想象空间。这也是 Hinton 和很多研究者想要寻找新方法的动机。</p>
+<h3 id="_1">这些局限是什么？</h3>
+<ol>
+<li>
+<p><strong>首先</strong>，BP 依赖链式法则来计算梯度，这要求前向计算图是完全可微、可展开的，不能有真正意义上的“黑盒”过程。</p>
+</li>
+<li>
+<p><strong>其次</strong>，从理想化的角度看，智能体的学习应该是“连续”的。例如，一个机器人在现实世界中观察、行动，每一帧感知、每一个动作都应即时参与学习，而不是“先观察一段时间，再暂停下来统一做一次反向传播”。</p>
+</li>
+<li>
+<p><strong>最后也是最关键的一点</strong>：BP 很难被视为一种“生物可行的学习机制”。几乎没人相信大脑中真的存在一个从高层往低层、逐层精确传播误差信号的过程。以 BPTT（通过时间的反向传播）为例，大模型训练时会在计算图上沿时间轴回溯，这种“逆时间传播”的过程显然不太可能是生物系统的真实机制。</p>
+</li>
+<li>
+<p>当然，BP 的缺点远不止这些。但只要意识到 BP 并不完美，我们就有理由去看看别的可能性。</p>
+</li>
+</ol>
+<h2 id="forward-forward">Forward-Forward 算法的基本思想</h2>
+<p>Forward-Forward（FF）算法的训练过程可以拆成两个交替进行的阶段：<strong>正相学习（positive phase）</strong> 和 <strong>负相学习（negative phase）</strong>。训练时不断交替执行：正相 → 负相 → 正相 → 负相 ……</p>
+<p>在 FF 中，每一层都会计算一个称为 <strong>goodness</strong> 的量，一般定义为输出的均方：</p>
+<blockquote>
+<p>goodness = mean( <span class="arithmatex">\(y^2\)</span> )</p>
+</blockquote>
+<h3 id="a">A. 损失函数</h3>
+<p>在正相学习中，我们希望“拉高” goodness，对应的损失可以写成：<br />
+$$ \mathcal{L}_{pos} = \log (1 + \theta - y^2) $$<br />
+其中 <span class="arithmatex">\(y\)</span> 是每一层的输出，<span class="arithmatex">\(\theta\)</span> 是超参数。</p>
+<p>在负相学习中，我们希望“压低” goodness，对应的损失为：<br />
+$$ \mathcal{L}_{neg} = \log (1 - \theta + y^2) $$</p>
+<p>直观上，正相让网络偏好“好”的输入（事实），负相让网络远离“坏”的输入（幻觉）。</p>
+<h3 id="b-fact-delusion">B. 数据构造：Fact 与 Delusion</h3>
+<p>在正相中，我们输入 <strong>事实（fact）</strong>；在负相中，我们输入 <strong>幻觉（delusion）</strong>。</p>
+<ul>
+<li>fact：真实数据或“正确标注”的样本；</li>
+<li>delusion：打乱、拼接，或由生成模型产生的“伪样本”。</li>
+</ul>
+<p>以一个简单的 MNIST 分类任务为例，原论文中做法是：把标签 one-hot 编码后的 10 维向量，映射到图像的前 10 个像素上。</p>
+<ul>
+<li>正相（fact）：图像 + 正确标签映射；</li>
+<li>负相（delusion）：图像 + 随机标签映射。</li>
+</ul>
+<p><img alt="fact" class="center" src="../../../images/fact.png" style="height:300px;" />
+<img alt="delusion" class="center" src="../../../images/delusion.png" style="height:300px;" /></p>
+<p>在无监督场景中，可以把“原图像”视为 fact，把“两张不同图像的拼接”视为 delusion：</p>
+<p><img alt="" class="center" src="../../../images/delusion-unsupervised.png" style="height:300px;" /></p>
+<p>对于 RNN 或语言模型，正相阶段输入真实语料；在若干步正相更新后，让模型自己生成一段文本，用作负相阶段的输入。</p>
+<h3 id="c">C. 推理过程</h3>
+<p>推理时，网络会对不同候选（例如不同标签或不同输入）分别计算各层的 goodness，然后选取总 goodness 最大的那个结果作为输出。这有点像“哪种解释让网络最舒服（能量最低）”。</p>
+<h3 id="d">D. 生物学类比</h3>
+<p>FF 很吸引人的一点在于它和某些“脑科学叙事”天然契合。Hinton 提到，可以把：</p>
+<ul>
+<li>白天清醒、感知真实世界的过程，看作 <strong>正相学习</strong>：大脑接收现实输入，把它当作“事实”；</li>
+<li>夜晚做梦、重放记忆、整理经验的过程，看作 <strong>负相学习</strong>：大脑对内部生成的想象或重放进行“修正”。</li>
+</ul>
+<p>这个类比是否真的准确、是否经得起神经科学检验，见仁见智。但作为一种启发，它非常有趣。</p>
+<h3 id="e">E. 局限性</h3>
+<p>原始论文主要在多层感知机（MLP）上做实验。当我把监督版 FF 直接搬到 CNN 上时，结果（意料之中地）失败了：</p>
+<p>原因在于，标签信息被当作“边缘像素”拼在输入上，在卷积堆叠后逐渐被抹掉。既然正负相之间唯一的区别在于那部分标签信息，一旦它在卷积中消失，模型就完全分不清 fact 与 delusion 了，训练自然崩溃。</p>
+<p>要让 FF 在更复杂架构上发挥作用，我们需要更巧妙的负样本构造方式。</p>
+<h2 id="_2">一些后续工作的进展</h2>
+<h3 id="a-training-convolutional-neural-networks-with-the-forward-forward-algorithm">A. 《Training Convolutional Neural Networks with the Forward-Forward Algorithm》</h3>
+<p>这篇工作提出了一个更自然的负样本构造思路：</p>
+<ul>
+<li>不再用 1D 的 one-hot 标签，而是构造与图像同尺寸的 <strong>2D 标签条纹（strips）</strong>；</li>
+<li>不同类别对应不同条纹模式，把它们“叠加”到图像上；</li>
+<li>由于这些条纹贯穿整个空间维度，不再是边缘上的少量像素，因此不会在卷积过程中轻易消失。</li>
+</ul>
+<p>理论上，这样 CNN 就能“看到”标签信息，从而在 FF 框架下得到更好的表现。</p>
+<p>不过，我在 CIFAR-10 / CIFAR-100 上复现实验时，感觉效果并没有论文中那么亮眼（作者也没有公开代码，所以不能完全排除我实现有问题）。</p>
+<p><img alt="" class="center" src="../../../images/strips.png" style="height:300px;" /></p>
+<h3 id="b-convolutional-channel-wise-competitive-learning-for-the-forward-forward-algorithm">B. 《Convolutional Channel-wise Competitive Learning for the Forward-Forward Algorithm》</h3>
+<p>这篇工作重新实现了 FF，并对标签使用方式进行了大改造：</p>
+<ul>
+<li>还记得正相要拉高 goodness、负相要压低 goodness 吗？</li>
+<li>这里作者把两者合并在一起：</li>
+<li>把每一层输出按通道方向平均分成 <code>num_classes</code> 份；</li>
+<li>与真实标签对应的那一份被“拉高” goodness；</li>
+<li>其它部分则被“压低” goodness。</li>
+</ul>
+<p>伪代码大概是这样：</p>
+<div class="highlight"><pre><span></span><code><span class="n">output</span> <span class="o">=</span> <span class="n">layer</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>  <span class="c1"># [C, H, W]</span>
+<span class="n">channel_size</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">channel_part</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">split</span><span class="p">(</span>
+    <span class="n">output</span><span class="p">,</span>
+    <span class="n">channel_size</span> <span class="o">//</span> <span class="n">num_of_classes</span><span class="p">,</span>
+    <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="c1"># 按通道维度切分</span>
+<span class="p">)</span>
+
+<span class="n">loss_pos</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">theta</span> <span class="o">-</span> <span class="n">channel_part</span><span class="p">[</span><span class="n">label</span><span class="p">]</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="n">loss_neg</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">theta</span> <span class="o">+</span> <span class="n">channel_part</span><span class="p">[</span><span class="n">others</span><span class="p">]</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+</code></pre></div>
+<p>直观上，它把“每一层”都当成一个小分类器。实验证明，在 CIFAR-10 上可以取得大约 79% 的精度。</p>
+<p>但问题也很明显：</p>
+<ul>
+<li>它几乎只能用于图像分类，</li>
+<li>类别数量也不能太大，</li>
+<li>且训练过程强烈依赖标签划分，</li>
+</ul>
+<p>这让它很难推广到诸如持续学习等更多样的场景，也在一定程度上破坏了 FF 原本那种“更偏特征学习 / 表征学习”的味道。</p>
+<p><img alt="" class="center" src="../../../images/CwC.png" style="height:300px;" /></p>
+<h3 id="c-self-contrastive-forward-forward-algorithm">C. Self-Contrastive Forward-Forward Algorithm</h3>
+<p><img alt="" class="center" src="../../../images/contrastive.png" style="height:300px;" /></p>
+<p>这篇工作提出了一个“自对比（self-contrastive）”版本的 FF：</p>
+<ul>
+<li>输入两张图像；</li>
+<li>若两张图像相同，则最大化 goodness；</li>
+<li>若不同，则最小化 goodness。</li>
+</ul>
+<p>目前论文还在 preprint 阶段，没有公开代码，我个人在复现时也没有成功，所以在此不做太多评价。</p>
+<h2 id="_3">参考文献</h2>
+<p>The Forward-Forward Algorithm: Some Preliminary Investigations</p>
+<p>Training Convolutional Neural Networks with the Forward-Forward Algorithm</p>
+<p>Convolutional Channel-wise Competitive Learning for the Forward-Forward Algorithm</p>
+<p>Self-Contrastive Forward-Forward Algorithm</p>
+<p>Geoffrey Hinton Unpacks The Forward-Forward Algorithm [YouTube 视频：<a href="https://www.youtube.com/watch?v=NWqy_b1OvwQ&amp;t=1217s">链接</a>]</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

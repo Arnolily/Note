@@ -9,12 +9,14 @@
       
       
       
-        <link rel="prev" href="../Feature_Learning/">
+        <link rel="prev" href="../..">
       
       
+        <link rel="next" href="../forward-forward-hinton/">
       
-      <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.21">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
     
     
       
@@ -22,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.66ac8b77.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
       
       
 
@@ -41,7 +43,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -76,15 +78,15 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Arnolily" class="md-header__button md-logo" aria-label="Arnolily" data-md-component="logo">
+    <a href="../.." title="Arnolily" class="md-header__button md-logo" aria-label="Arnolily" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -104,36 +106,64 @@
     </div>
     
     
-      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
+      <div class="md-header__option">
+  <div class="md-select">
     
-      <label class="md-header__button md-icon" for="__search">
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-      </label>
-      <div class="md-search" data-md-component="search" role="dialog">
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../zh/posts/resnet-batch-norms/" hreflang="zh" class="md-select__link">
+              中文
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
         <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
       
     </form>
     <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
             Initializing search
@@ -144,6 +174,7 @@
     </div>
   </div>
 </div>
+      
     
     
   </nav>
@@ -171,10 +202,10 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Arnolily" class="md-nav__button md-logo" aria-label="Arnolily" data-md-component="logo">
+    <a href="../.." title="Arnolily" class="md-nav__button md-logo" aria-label="Arnolily" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
     Arnolily
@@ -189,11 +220,13 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
-    My Daily Life and Thoughts on Science
+    Home
+    
   </span>
   
 
@@ -206,44 +239,44 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../FF%26Hinton/" class="md-nav__link">
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
   
   <span class="md-ellipsis">
-    The Forward-Forward Algorithm: A New Revolution Brought by Geoffrey Hinton
+    Posts
+    
   </span>
   
 
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Feature_Learning/" class="md-nav__link">
+            <span class="md-nav__icon md-icon"></span>
+          </label>
         
-  
-  <span class="md-ellipsis">
-    Feature Learning from Continual Learning
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Posts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
   
   
     
@@ -261,8 +294,10 @@
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
   
+  
   <span class="md-ellipsis">
     My comprehension of Resnet and Batch Norms
+    
   </span>
   
 
@@ -272,8 +307,10 @@
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
+  
   <span class="md-ellipsis">
     My comprehension of Resnet and Batch Norms
+    
   </span>
   
 
@@ -390,6 +427,83 @@
     </ul>
   
 </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../forward-forward-hinton/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    The Forward-Forward Algorithm: A New Revolution Brought by Geoffrey Hinton
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../feature-learning-continual/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Feature Learning from Continual Learning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../NeurIPS-2025-trip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Some of my thoughts through NeurIPS 2025 trip
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -529,50 +643,58 @@
                   
 
 
+
 <h1 id="my-comprehension-of-resnet-and-batch-norms">My comprehension of Resnet and Batch Norms</h1>
 <blockquote>
 <p>Skip-connections and rescaling (including normalization) appear in most neural networks. However, some papers use these techniques inappropriately, causing unnecessary network complexity. It is therefore important to revisit the basics for both experimental inspiration and theoretical understanding.</p>
 </blockquote>
 <h2 id="possible-advantages-of-batch-normalization-bn"><strong>Possible Advantages of Batch Normalization (BN)</strong></h2>
 <h3 id="improving-numerical-stability"><strong>Improving Numerical Stability</strong></h3>
-<p>Consider a <strong>1-layer linear neural network</strong> for a regression problem. The output <script type="math/tex"> o </script> and the <strong>Mean Squared Error (MSE) loss</strong> are defined as: <script type="math/tex; mode=display"> o = \sigma(WX) </script>
-<script type="math/tex; mode=display"> \mathcal{L}_{MSE} = \frac{1}{2} \| o - Y \|^2 </script> where: - <script type="math/tex"> W \in \mathbb{R}^{m \times n} </script> is the weight matrix, - <script type="math/tex"> X \in \mathbb{R}^{n \times 1} </script> is the input vector, - <script type="math/tex"> Y \in \mathbb{R}^{m \times 1} </script> is the target output, - <script type="math/tex"> \sigma(\cdot) </script> is an activation function. The gradient of the loss with respect to the weights is computed using <strong>backpropagation</strong>: <script type="math/tex; mode=display"> \nabla_W \mathcal{L} = \frac{\partial \mathcal{L}}{\partial W} = (o - Y) \odot \sigma'(WX) X^T </script> where:  <script type="math/tex"> \odot </script> denotes element-wise multiplication, <script type="math/tex"> \sigma'(WX) </script> is the derivative of the activation function.</p>
-<p>If the network has <script type="math/tex">N</script> layers, then the gradient of the first layer would be <script type="math/tex; mode=display"> \nabla_{W^{(1)}} \mathcal{L} = (o - Y) \cdot \prod_{i=1}^{N} \frac{\partial o^{(i)}}{\partial W^{(i)}} </script>, and the product of this sequence would tend to 0 or infinity. This is <strong>numerical instability</strong>.</p>
-<p>With BN, we can restrict <script type="math/tex">x</script> to any Gaussian distribution, thus mitigating the instability of <script type="math/tex">x</script> and <script type="math/tex">\sigma'</script>.</p>
+<p>Consider a <strong>1-layer linear neural network</strong> for a regression problem. The output <span class="arithmatex">\( o \)</span> and the <strong>Mean Squared Error (MSE) loss</strong> are defined as:</p>
+<div class="arithmatex">\[ o = \sigma(WX) \]</div>
+<div class="arithmatex">\[ \mathcal{L}_{MSE} = \frac{1}{2} \| o - Y \|^2 \]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\( W \in \mathbb{R}^{m \times n} \)</span> is the weight matrix,</li>
+<li><span class="arithmatex">\( X \in \mathbb{R}^{n \times 1} \)</span> is the input vector,</li>
+<li><span class="arithmatex">\( Y \in \mathbb{R}^{m \times 1} \)</span> is the target output,</li>
+<li><span class="arithmatex">\( \sigma(\cdot) \)</span> is an activation function.</li>
+</ul>
+<p>The gradient of the loss with respect to the weights is computed using <strong>backpropagation</strong>:</p>
+<div class="arithmatex">\[ \nabla_W \mathcal{L} = \frac{\partial \mathcal{L}}{\partial W} = (o - Y) \odot \sigma'(WX) X^T \]</div>
+<p>where <span class="arithmatex">\( \odot \)</span> denotes element-wise multiplication, and <span class="arithmatex">\( \sigma'(WX) \)</span> is the derivative of the activation function.</p>
+<p>If the network has <span class="arithmatex">\(N\)</span> layers, then the gradient of the first layer would be</p>
+<div class="arithmatex">\[ \nabla_{W^{(1)}} \mathcal{L} = (o - Y) \cdot \prod_{i=1}^{N} \frac{\partial o^{(i)}}{\partial W^{(i)}} \]</div>
+<p>and the product of this sequence would tend to 0 or infinity. This is <strong>numerical instability</strong>.</p>
+<p>With BN, we can restrict <span class="arithmatex">\(x\)</span> to any Gaussian distribution, thus mitigating the instability of <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(\sigma'\)</span>.</p>
 <h3 id="perhaps-not-alleviating-internal-covariate-shift-1"><strong>(Perhaps Not) Alleviating Internal Covariate Shift</strong> [1]</h3>
 <p>In the original paper on Batch Normalization, they defined Internal Covariate Shift (ICS).</p>
 <blockquote>
 <p>ICS is the phenomenon where the distribution of inputs to a layer in the network changes due to an update of parameters in previous layers.</p>
 </blockquote>
 <p>Mathematically, each layer can be derived as:</p>
-<p>
-<script type="math/tex; mode=display">Y = \mathcal{F}\{X\}</script>
-</p>
-<p>where <script type="math/tex">\mathcal{F}</script> is the mapping function between input <script type="math/tex">X</script> and output <script type="math/tex">Y</script>. Essentially, layers are learning this map between input patterns and output patterns. However, due to ICS, the input pattern could constantly change, which might disrupt the learned mapping function. As a result, the gradient (which is related to the input) is also affected by the change of distribution in the input. Therefore, ICS is believed to have a detrimental effect on the training process.</p>
+<div class="arithmatex">\[Y = \mathcal{F}\{X\}\]</div>
+<p>where <span class="arithmatex">\(\mathcal{F}\)</span> is the mapping function between input <span class="arithmatex">\(X\)</span> and output <span class="arithmatex">\(Y\)</span>. Essentially, layers are learning this map between input patterns and output patterns. However, due to ICS, the input pattern could constantly change, which might disrupt the learned mapping function. As a result, the gradient (which is related to the input) is also affected by the change of distribution in the input. Therefore, ICS is believed to have a detrimental effect on the training process.</p>
 <p>However, I propose an alternative understanding of ICS. In traditional machine learning, we assume that data are <strong>IID</strong> (i.e., independently and identically distributed). This is the foundation of machine learning and the prerequisite of <strong>MLE</strong> (i.e., Maximum Likelihood Estimation), which is the original form of all loss functions. By using BN, we can ensure that the data is identically distributed. This could lead to better generalization performance for the network.</p>
 <p><em>Other researchers, however, have shown that ICS does not affect performance and that BN does not reduce ICS.</em> They prefer to explain BN’s effectiveness differently.</p>
 <h3 id="smoother-loss-landscape-2"><strong>Smoother Loss Landscape</strong> [2]</h3>
 <p>These researchers demonstrated that BN contributes to a smoother loss landscape, which can be visualized:</p>
-<p><img alt="Loss Landscape" src="../Landscape.png" /></p>
+<p><img alt="Loss Landscape" src="../../images/Landscape.png" /></p>
 <p>A smoother loss landscape enables gradient descent (GD) to navigate more efficiently, avoiding sharp minima that may lead to poor generalization. This smoothing effect allows for the use of higher learning rates, which in turn accelerates convergence.</p>
 <h3 id="better-use-of-non-linearity-3"><strong>Better Use of Non-linearity</strong> [3]</h3>
-<p>Note that there is a linear transformation (i.e., scaling and shifting) applied after the feature map <script type="math/tex">x</script> is normalized.</p>
-<p><img alt="Batch Normalization" src="../BN.png" style="height:300px;" /></p>
+<p>Note that there is a linear transformation (i.e., scaling and shifting) applied after the feature map <span class="arithmatex">\(x\)</span> is normalized.</p>
+<p><img alt="Batch Normalization" src="../../images/BN.png" style="height:300px;" /></p>
 <p>Suppose we use the sigmoid function as the activation function.</p>
-<p><img alt="Sigmoid Function" src="../sigmoid-function.png" style="height:300px;" /></p>
-<p>It’s clear that for <script type="math/tex">x \in (-1, 1)</script>, we have <script type="math/tex">\sigma(x) \approx x</script>. This means the activation function acts almost as an identity transformation, which is not ideal because the purpose of an activation function is to add non-linearity to the model. Therefore, without scaling and shifting, the non-linearity would be weak, making the fitting process difficult.</p>
-<p>Even for ReLU, which seems less affected, there are cases where all neurons are either activated <script type="math/tex">x > 0</script> or deactivated <script type="math/tex">x < 0</script>. If a ReLU neuron is always active, then it is linear; if it’s always inactive, it doesn’t contribute to the network.</p>
+<p><img alt="Sigmoid Function" src="../../images/sigmoid-function.png" style="height:300px;" /></p>
+<p>It’s clear that for <span class="arithmatex">\(x \in (-1, 1)\)</span>, we have <span class="arithmatex">\(\sigma(x) \approx x\)</span>. This means the activation function acts almost as an identity transformation, which is not ideal because the purpose of an activation function is to add non-linearity to the model. Therefore, without scaling and shifting, the non-linearity would be weak, making the fitting process difficult.</p>
+<p>Even for ReLU, which seems less affected, there are cases where all neurons are either activated <span class="arithmatex">\(x &gt; 0\)</span> or deactivated <span class="arithmatex">\(x &lt; 0\)</span>. If a ReLU neuron is always active, then it is linear; if it’s always inactive, it doesn’t contribute to the network.</p>
 <p>From my perspective, however, this might not be BN’s most important contribution. Experiments have shown that placing BN after the activation function can sometimes improve network performance!</p>
 <h2 id="possible-advantages-of-skip-connections"><strong>Possible Advantages of Skip-Connections</strong></h2>
 <h3 id="smoother-gradient-flow"><strong>Smoother Gradient Flow</strong></h3>
 <p>As pointed out in [4], authored by the ResNet creator He, one benefit of skip-connections is smoother gradient flow. For each skip layer, the output can be derived as:</p>
-<p>
-<script type="math/tex; mode=display">\mathbf{x}_{l+1} = \mathbf{x}_l + \mathcal{F}(\mathbf{x}_l, \mathcal{W}_l)</script>
-</p>
+<div class="arithmatex">\[\mathbf{x}_{l+1} = \mathbf{x}_l + \mathcal{F}(\mathbf{x}_l, \mathcal{W}_l)\]</div>
 <p>And the gradient is:</p>
-<p>
-<script type="math/tex; mode=display">\frac{\partial \mathcal{E}}{\partial \mathbf{x}_l} = \frac{\partial \mathcal{E}}{\partial \mathbf{x}_L} \frac{\partial \mathbf{x}_L}{\partial \mathbf{x}_l} = \frac{\partial \mathcal{E}}{\partial \mathbf{x}_L} \left(1 + \frac{\partial}{\partial \mathbf{x}_l} \sum_{i=l}^{L-1} \mathcal{F}(\mathbf{x}_i, \mathcal{W}_i)\right)</script>
-</p>
+<div class="arithmatex">\[\frac{\partial \mathcal{E}}{\partial \mathbf{x}_l} = \frac{\partial \mathcal{E}}{\partial \mathbf{x}_L} \frac{\partial \mathbf{x}_L}{\partial \mathbf{x}_l} = \frac{\partial \mathcal{E}}{\partial \mathbf{x}_L} \left(1 + \frac{\partial}{\partial \mathbf{x}_l} \sum_{i=l}^{L-1} \mathcal{F}(\mathbf{x}_i, \mathcal{W}_i)\right)\]</div>
 <p>With ResNet, the gradient will be a sum of “geometric equations,” preventing it from vanishing.</p>
 <h3 id="solving-the-network-degradation-problem"><strong>Solving the Network Degradation Problem</strong></h3>
 <p>In the original ResNet paper, He claimed that ResNet solved the "network degradation problem." The idea was that if a deeper model performs worse than a shallower one on the test set, it implies that the additional layers in the deeper model are less effective than a straightforward identity mapping. If those extra layers simply acted as identity mappings, the deeper model would match the performance of the shallower model.</p>
@@ -584,7 +706,7 @@
 <p>Shattered gradients undermine the effectiveness of algorithms that assume gradients at nearby points are similar, such as momentum-based and accelerated methods.</p>
 </blockquote>
 <p>Under this assumption, they quantified the shattered gradient problem as the autocorrelation function (ACF). A higher ACF leads to higher performance and a reduced shattered gradient problem. They demonstrated, through both mathematical proofs and experiments, that skip connections enhance ACF. However, their proof relied on very strong assumptions and was not entirely convincing to me.</p>
-<p><img alt="Autocorrelation Function (ACF)" src="../ACF.png" title="title" /></p>
+<p><img alt="Autocorrelation Function (ACF)" src="../../images/ACF.png" title="title" /></p>
 <h2 id="citation"><strong>Citation</strong></h2>
 <p>[1] Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift.<br />
 [2] How Does Batch Normalization Help Optimization?<br />
@@ -636,12 +758,14 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
-    
-      <script src="../assets/javascripts/bundle.a7c05c9e.min.js"></script>
       
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

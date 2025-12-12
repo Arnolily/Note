@@ -1,0 +1,584 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>从持续学习看特征学习 - Arnolily</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../" title="Arnolily" class="md-header__button md-logo" aria-label="Arnolily" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Arnolily
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              从持续学习看特征学习
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="选择当前语言">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../posts/feature-learning-continual/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="zh" class="md-select__link">
+              中文
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../" title="Arnolily" class="md-nav__button md-logo" aria-label="Arnolily" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Arnolily
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    首页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      一个有趣的现象
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#continual-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      持续学习（Continual Learning）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      特征学习的惊人表现
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hat" class="md-nav__link">
+    <span class="md-ellipsis">
+      一个令人震撼但又有缺陷的方法：HAT
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      小结
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">从持续学习看特征学习</h1>
+<blockquote>
+<p>Continual Learning：学会“记住”。<br />
+Feature Learning：学会“理解”。</p>
+</blockquote>
+<p><strong>我一直很好奇的一件事是：是什么让神经网络如此强大？其中一个子问题就是：神经网络到底学到了什么？</strong></p>
+<p>一个常被拿来举例的现象是自注意力（self-attention）：</p>
+<p><img alt="image-20250220200020938" src="../../../images/heatmap.png" /></p>
+<p>在生成单词时，模型会把注意力集中在图像中的不同区域，有点像人类在看图时会不自觉聚焦在关键部分。</p>
+<p>但所有模型都像这样学习吗？</p>
+<p>首先，我们要想起模型在做什么：它们在做<strong>特征提取（feature extraction）</strong>——剔除无关噪声，只保留“有用信息”。这些有用的信息最后会被送入全连接层（fc），作为分类器的一部分，用来学习“特征到标签”的映射。</p>
+<h2 id="_2">一个有趣的现象</h2>
+<p>我在学校上一门与 AI 相关的课程时，有一个项目是：</p>
+<blockquote>
+<p>在我们自己采集的数据集上做图像分类。</p>
+</blockquote>
+<p>数据集质量非常差，分布也很糟糕。比如：一个易拉罐可能被标成“金属”“垃圾”，甚至如果里面装着过期药品，还会被标成“有害垃圾”。姑且称之为 UESTC 数据集吧。</p>
+<p>一开始，模型在这个数据集上几乎学不出什么有意义的东西，我也果断把锅全甩给了数据集。直到几天后，一个朋友告诉我，他用在 ImageNet 上预训练过的模型做迁移学习（transfer learning），在这个数据集上居然能做到 80% 左右的精度。</p>
+<p>这立刻引起了我的兴趣：</p>
+<ul>
+<li>通过简单的迁移学习技巧，</li>
+<li>预训练模型在 UESTC 这种糟糕的数据上也能有不错表现，</li>
+</ul>
+<p>显然，ImageNet 上的预训练让模型学会了更加“通用”的特征，而不是只记住特定数据集上的细枝末节。</p>
+<p>现在我会把这种现象称为<strong>特征学习（feature learning）</strong>。在我看来，迁移学习的核心之一就是特征学习：</p>
+<ul>
+<li>老师模型先在高质量数据集上预训练，</li>
+<li>学会如何提取对下游任务普适、有用的特征，</li>
+<li>然后把这些参数迁移到下游任务上做微调。</li>
+</ul>
+<p>这相当于把梯度下降的“起点”设在了一个更好的位置，对整个优化过程和最终性能都会有重要影响。</p>
+<p>自然地，我也想反过来试：</p>
+<ul>
+<li>如果我先在 UESTC 这种“脏数据”上训练，</li>
+<li>再拿这个模型去做 ImageNet，</li>
+<li>会不会也得到某种形式的“泛化增强”？</li>
+</ul>
+<p>结果当然是失败的：</p>
+<p>模型在 UESTC 上训练之后，几乎<strong>完全忘记了</strong>它在 ImageNet 上学到的东西，
+严重过拟合在 UESTC 数据上。</p>
+<h2 id="continual-learning">持续学习（Continual Learning）</h2>
+<p>可见，上面这种“先预训练再微调”的方式，只会提升模型在<strong>某一个特定数据集</strong>上的表现。一旦我们在下游任务上继续训练，参数空间就会朝新的方向移动，原本的泛化能力会被不断侵蚀——大致可以用下图来想象：</p>
+<p><img alt="parameterspace" src="../../../images/parameterspace.png" /></p>
+<p>如果我们希望模型既能学习新的任务，又<strong>不忘记</strong>旧任务，该怎么办？</p>
+<p>有没有可能让参数停留在某个“甜点区域（sweet spot）”，在性能和过拟合之间取得平衡？这正是<strong>持续学习（continual learning）</strong>要解决的问题。</p>
+<p>所谓持续学习，大致就是缓解“灾难性遗忘（catastrophic forgetting）”：</p>
+<blockquote>
+<p>模型在训练新任务时，会严重遗忘旧任务的能力。</p>
+</blockquote>
+<p>另一个相关概念是 <strong>终身学习（lifelong learning）</strong>：</p>
+<blockquote>
+<p>理想情况下，模型应该像人类一样，可以终身学习，
+持续吸收新知识，同时保留最重要的旧知识。</p>
+</blockquote>
+<p>下面简单介绍几类常见的持续学习方法：</p>
+<ol>
+<li><strong>加约束（Regularization-based）</strong>：如 EWC、OWM、GPM</li>
+<li>在损失函数中对参数加各种约束；</li>
+<li>约束可以与参数的均值、梯度、方差等相关；</li>
+<li>
+<p>目标是让新的梯度下降轨迹尽量避开对旧任务“关键”的方向。</p>
+</li>
+<li>
+<p><strong>拆模型（Architecture-based）</strong>：如 HAT</p>
+</li>
+<li>通过结构上的“切分”给每个任务分配一部分模型；</li>
+<li>等价于为不同任务开辟不同“子网络”；</li>
+<li>
+<p>从短期来看，这确实能避免遗忘，但从终身学习的角度看，不可持续：</p>
+<ul>
+<li>模型总有“被分完的一天”。</li>
+</ul>
+</li>
+<li>
+<p><strong>记忆池（Replay-based）</strong>：如 A-GEM</p>
+</li>
+<li>维护一个额外的记忆池，存一些旧任务的数据或梯度；</li>
+<li>训练时不时回放这些样本，让模型“复习”旧知识。</li>
+</ol>
+<h2 id="_3">特征学习的惊人表现</h2>
+<blockquote>
+<p>在继续之前，我想先声明：这部分更多是个人视角，也可能比较幼稚。
+也许我并没有完全抓住持续学习的精髓，也许未来我会改变这些看法。
+但就算是现在的想法不够成熟，我仍然觉得值得记录下来。</p>
+</blockquote>
+<p>持续学习吸引我的地方，在于它的动机——<strong>如何学会“记住”</strong>。</p>
+<p>如果我们希望模型不再灾难性遗忘，理想做法应该是：</p>
+<ul>
+<li>学到数据的“共性结构”，而不是死记细节；</li>
+<li>类似人类那样“理解”规律，而不是“死背”样本。</li>
+</ul>
+<p>人不会记得前几天每一顿具体吃了什么，但会长期保留学到的知识；
+我们知道该把注意力放在什么上，不该浪费在什么上；
+我们知道如何从杂乱的信息里提炼有价值的部分。</p>
+<p>但是，前面提到的许多持续学习技术，其实并没有显式地讨论“特征层面的信息蒸馏”。
+它们更多是在优化层面减少任务间冲突：</p>
+<ul>
+<li>让每一步梯度更新“别太伤害旧任务”；</li>
+<li>而不是直接去塑造“更好的特征空间”。</li>
+</ul>
+<p>这是一把“双刃剑”：</p>
+<ul>
+<li>在某些设定下，确实能带来收益；</li>
+<li>但至少在一些常见基准（如 split-CIFAR100、P-MNIST）上，
+  这些 fancy 方法并不总是比“朴素的 BP”好。</li>
+</ul>
+<p>为什么我会这么说？因为传统 BP 本身就不算太差。</p>
+<p><img alt="Cifar100" src="../../../images/Cifar100.png" /></p>
+<p>图中：</p>
+<ul>
+<li><strong>BP</strong>*：每个任务训练后，保存验证集精度最高的那个 checkpoint；</li>
+<li><strong>BP**</strong>：冻结特征提取器（分类器前面的所有层），
+  只为每个任务训练一个新的全连接分类头；</li>
+<li><strong>OL</strong>：一种自底向上的、带无监督“正交损失”的训练方式。</li>
+</ul>
+<p>这些结果在 5 个随机种子下重复实验，波动范围可接受，
+因此大致可以给出一些定性的结论：</p>
+<blockquote>
+<p>尽管 BP 在持续学习中很不稳定（有些种子会完全忘光旧任务），
+但它的一些“变体”能达到非常不错的性能。</p>
+</blockquote>
+<p><strong>那为什么 BP** 能这么强？</strong></p>
+<p>关键在于：本质上，BP** 其实已经“不是传统意义上的持续学习”了：</p>
+<ul>
+<li>对每个新任务，只训练一个单独的全连接分类层；</li>
+<li>特征提取器的参数被完全冻结；</li>
+</ul>
+<p>如果从特征学习的角度看：</p>
+<ul>
+<li>任务 1 的训练相当于一次“预训练”；</li>
+<li>后续任务则是“下游任务”；</li>
+<li>任务 1 上学到的特征会被后续所有任务共享。</li>
+</ul>
+<p>这几乎就是一个标准的“预训练 + 微调”范式，只不过预训练数据不是 ImageNet，而是第一个任务对应的数据。</p>
+<p>📌 这也是为什么我会说：</p>
+<blockquote>
+<p>“短期的持续学习”其实意义有限——因为 BP 本身已经足够好了，
+甚至在某些设定下能超越像 HAT 这样的专门方法。</p>
+</blockquote>
+<p><strong>那 OL 呢？为什么一个看起来“怪怪的损失函数”能取得还不错的结果？</strong></p>
+<p>原因在于，正交损失本质上是一种<strong>特征学习</strong>：</p>
+<ul>
+<li>回头看正交损失的定义：</li>
+</ul>
+<blockquote>
+<p>给定某一层的输出矩阵 <span class="arithmatex">\(Y\)</span>，
+正交损失鼓励 <span class="arithmatex">\(Y\)</span> 的“核”尽可能接近单位矩阵，
+等价于提高输出特征的“秩”和信息量。</p>
+</blockquote>
+<p>换句话说，它想让模型学到：</p>
+<ul>
+<li>尽可能多保留输入信息；</li>
+<li>让特征空间的“维度利用率”更高；</li>
+<li>再把这种“富含信息的表征”交给后续分类器来完成任务。</li>
+</ul>
+<p>这与 PCA 之类的降维方法的思想很接近：</p>
+<blockquote>
+<p>在降维的同时，尽量保留尽可能多的信息。</p>
+</blockquote>
+<p>不过，这套思路更多是在<strong>任务增量学习（task-incremental）</strong>下有效。
+一旦切换到 <strong>类别增量学习（class-incremental）</strong>：</p>
+<ul>
+<li>分类器本身变成瓶颈；</li>
+<li>BP 和 OL 都会彻底崩盘；</li>
+</ul>
+<p>即便如此，“特征学习优先”的原则依然没有改变。</p>
+<p>在像 permuted-MNIST 这类“人为打乱”的数据集上，
+尽管原始图像几乎不存在可迁移的结构特征，
+BP** 依然能取得不错的结果——
+特征提取器会通过提升特征矩阵的秩，扩大参数空间，从而保留更多有用信息。</p>
+<h2 id="hat">一个令人震撼但又有缺陷的方法：HAT</h2>
+<p>当我第一次实现 HAT 的时候，它的表现让我非常震惊：</p>
+<blockquote>
+<p>它“几乎不会忘记”。</p>
+</blockquote>
+<p>但是，代价也很明显：</p>
+<ul>
+<li>它与 BatchNorm 不兼容；</li>
+<li>学习率必须严格控制在 5e-2 这样很窄的范围内；</li>
+<li>一个对其他方法来说很正常的玩具模型，
+  想让它在 HAT 下工作，就得做很多特殊改动。</li>
+</ul>
+<p>这一点严重限制了 HAT 在更大模型上的可扩展性。</p>
+<p>更根本的问题在于它的架构设计：</p>
+<ul>
+<li>模型几乎被切分成若干块，每一块负责一个任务；</li>
+<li>推理时，只会激活与当前任务相关的那一小部分参数；</li>
+</ul>
+<p>这确实能强力避免遗忘，但从“终身学习”的角度看：</p>
+<ul>
+<li>如果任务数很多甚至趋近无限，这种划分方式迟早会失效。</li>
+</ul>
+<p>在我们的实验中，在 split-Tiny-ImageNet 上使用 HAT 完全失败，
+而同样的模型在其他方法下表现良好，这进一步说明了它的局限。</p>
+<h2 id="_4">小结</h2>
+<p>我越来越相信：</p>
+<blockquote>
+<p>一个更有前景的持续学习方向，应该更贴近人类的学习方式：
+<strong>强调“理解”和“特征学习”，而不是单纯地记住每个任务的细节。</strong></p>
+</blockquote>
+<p>换句话说：</p>
+<ul>
+<li>把学习的重点放在“学到什么样的特征”上，</li>
+<li>而不是在损失表面上小心翼翼地走一步、退一步，</li>
+</ul>
+<p>也许更有机会在真正长期、开放的学习场景中取得突破。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

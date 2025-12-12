@@ -1,3 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+        <loc>None./</loc>
+        <lastmod>2025-12-12</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="None"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/"/>
+    </url>
+    <url>
+        <loc>Noneposts/NeurIPS-2025-trip/</loc>
+        <lastmod>2025-12-12</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneposts/NeurIPS-2025-trip/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/posts/NeurIPS-2025-trip/"/>
+    </url>
+    <url>
+        <loc>Noneposts/feature-learning-continual/</loc>
+        <lastmod>2025-12-12</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneposts/feature-learning-continual/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/posts/feature-learning-continual/"/>
+    </url>
+    <url>
+        <loc>Noneposts/forward-forward-hinton/</loc>
+        <lastmod>2025-12-12</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneposts/forward-forward-hinton/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/posts/forward-forward-hinton/"/>
+    </url>
+    <url>
+        <loc>Noneposts/resnet-batch-norms/</loc>
+        <lastmod>2025-12-12</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneposts/resnet-batch-norms/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/posts/resnet-batch-norms/"/>
+    </url>
+    <url>
+        <loc>Nonezh/</loc>
+        <lastmod>2025-12-12</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="None"/>
+    </url>
+    <url>
+        <loc>Nonezh/posts/NeurIPS-2025-trip/</loc>
+        <lastmod>2025-12-12</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/posts/NeurIPS-2025-trip/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneposts/NeurIPS-2025-trip/"/>
+    </url>
+    <url>
+        <loc>Nonezh/posts/feature-learning-continual/</loc>
+        <lastmod>2025-12-12</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/posts/feature-learning-continual/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneposts/feature-learning-continual/"/>
+    </url>
+    <url>
+        <loc>Nonezh/posts/forward-forward-hinton/</loc>
+        <lastmod>2025-12-12</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/posts/forward-forward-hinton/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneposts/forward-forward-hinton/"/>
+    </url>
+    <url>
+        <loc>Nonezh/posts/resnet-batch-norms/</loc>
+        <lastmod>2025-12-12</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/posts/resnet-batch-norms/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneposts/resnet-batch-norms/"/>
+    </url>
 </urlset>
